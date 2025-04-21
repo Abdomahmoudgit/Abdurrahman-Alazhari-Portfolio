@@ -155,14 +155,14 @@ export const testimonials = [
       "One of Abdelrahman’s greatest strengths is his ability to listen attentively and absorb knowledge from everyone around him. He has an incredible passion for learning and continuously seeks to expand his expertise from every possible source. His adaptability and curiosity make him a well-rounded developer. His dedication to improvement and staying ahead in the field allows him to make well-informed decisions in both his professional and personal life.",
     name: "Eng. Abdullah Samir",
     title: "Backend Engineer",
-    img: "/unknown.jpg",
+    img: "/profile.svg",
   },
   {
     quote:
       "Working with Abdelrahman has been a fantastic experience. He is truly one of the best! When it comes to leadership, he is absolutely top-notch. His ability to organize and structure everything is remarkable. If he ever considers pursuing a leadership role, I highly recommend it—he has all the qualities of a great leader. His communication skills, organization, and ability to create engaging content are outstanding. Honestly, hats off to him! This is not just a compliment; it’s based on my firsthand experience working with him.",
     name: "Youssef Shaaban",
     title: "Full Stack Developer",
-    img: "/unknown.jpg",
+    img: "/yousifshaban.jpg",
   },
   // {
   //   quote:
@@ -280,5 +280,20 @@ export const socialMedia = [
     id: 3,
     img: "/whatsapp.png",
     link: "https://wa.me/201095664239",
+  },
+  {
+    id: 4,
+    img: "/youtup.svg",
+    link: "https://youtube.com/@abdolrahmanmahmoud1542?si=XyYks2sOJ9rCkZMj",
+  },
+  {
+    id: 5,
+    img: "/Facebook.svg",
+    link: "https://www.facebook.com/AbdurrahmanM.Alazhari/",
+  },
+  {
+    id: 6,
+    img: "/Facebook.svg",
+    link: "https://www.facebook.com/profile.php?id=61574939255961",
   },
 ];

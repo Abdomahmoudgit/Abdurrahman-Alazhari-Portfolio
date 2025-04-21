@@ -4,6 +4,7 @@ import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import Typed from "typed.js";
 import { useEffect } from "react";
+import LazyImage from './LazyImage';
 const Hero = () => {
   useEffect(() => {
     const typed = new Typed("#element", {
@@ -62,7 +63,7 @@ const Hero = () => {
       </div>
       <div className="flex flex-col items-center justify-center">
         <div className="">
-          <img
+          <LazyImage
             src="/mineImage.png"
             alt="Abdurrahman Al-Azhari"
             className="m-2 md:m-4 w-[150px] h-[150px
