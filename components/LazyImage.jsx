@@ -9,7 +9,7 @@ const LazyImage = ({ src, alt, className = "", ...rest }) => {
   return (
     <div className="relative w-full h-full">
       {!loaded && (
-        <div className="absolute inset-0 flex justify-center items-center bg-black z-10">
+        <div className="absolute inset-0 flex justify-center items-center  z-10">
           <BlinkBlur color={["#32cd32", "#327fcd", "#cd32cd", "#cd8032"]} />
         </div>
       )}

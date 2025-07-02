@@ -37,7 +37,7 @@ export default function Home() {
       <div className="flex justify-center items-center h-screen w-full bg-black flex-col gap-4">
         <BlinkBlur color={["#32cd32", "#327fcd", "#cd32cd", "#cd8032"]} />
         <p className="text-white animate__animated animate__fadeIn text-center mt-4">
-          اغتنم وقتك بالاستغفار وذكر الله 🌿
+          Loading...
         </p>
       </div>
     );

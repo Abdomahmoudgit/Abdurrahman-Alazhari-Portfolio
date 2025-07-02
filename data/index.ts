@@ -291,9 +291,9 @@ export const socialMedia = [
     img: "/Facebook.svg",
     link: "https://www.facebook.com/AbdurrahmanM.Alazhari/",
   },
-  {
-    id: 6,
-    img: "/Facebook.svg",
-    link: "https://www.facebook.com/profile.php?id=61574939255961",
-  },
+  // {
+  //   id: 6,
+  //   img: "/Facebook.svg",
+  //   link: "https://www.facebook.com/profile.php?id=61574939255961",
+  // },
 ];
