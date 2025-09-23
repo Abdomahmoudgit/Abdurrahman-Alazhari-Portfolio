@@ -8,7 +8,7 @@ export const navItems = [
 export const gridItems = [
   {
     id: 1,
-    title: "React Developer passionate about crafting great user experiences",
+    title: "React / Next.js Frontend Developer",
     description: "",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[70vh]",
     imgClassName: "w-full h-full",
@@ -18,7 +18,7 @@ export const gridItems = [
   },
   {
     id: 2,
-    title: "Experienced in building modern UIs with the latest technologies",
+    title: "Modern UI & Performance",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2 lg:min-h-[40vh]",
     imgClassName: "",
@@ -29,7 +29,8 @@ export const gridItems = [
   {
     id: 3,
     title: "My tech stack",
-    description: `React, Next.js, Tailwind, Bootstrap, SASS`,
+    description:
+      "Next.js, React, Tailwind CSS, Bootstrap, Shadcn UI, SASS, Git & GitHub",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
@@ -38,7 +39,7 @@ export const gridItems = [
   },
   {
     id: 4,
-    title: "I love solving problems and building innovative solutions",
+    title: "Problem-Solver & Innovator",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
@@ -46,11 +47,11 @@ export const gridItems = [
     img: "/grid.svg",
     spareImg: "/b4.svg",
   },
-
   {
     id: 5,
     title: "Currently working on exciting front-end projects",
-    description: "Bringing ideas to life with code",
+    description:
+      "Working on real-world React/Next.js apps focused on UX, SEO, and speed.",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-center",
@@ -82,9 +83,45 @@ export const gridItems = [
 //   YouTube: "/youtube.svg",
 // };
 export const projects = [
-  // First project
+  // 1️⃣ University Housing System
   {
     id: 1,
+    title: "University Housing System (Graduation Project)",
+    des: "Built the entire frontend using React.js, Redux Toolkit, and SCSS with full Arabic support and role-based dashboards.",
+    img: "/HousingSystem.png",
+    iconLists: ["/re.svg", "/redux.svg", "/scss.svg"],
+    link: "https://e3maralazhar.vercel.app/",
+  },
+
+  // 2️⃣ Exeem Platform
+  {
+    id: 2,
+    title: "Exeem Platform",
+    des: "A multi-purpose platform focused on social media for missing people search & awareness. Developed and launched 5+ production-ready websites using Next.js and React.js, improved website performance by reducing load time by 30% through code optimization and SEO best practices, and built 20+ reusable UI components with SCSS, Tailwind CSS, and Shadcn UI library. Collaborated with a 5-member team to deliver high-quality, user-friendly digital platforms. Projects include: Exeem Main Website, Exeem Social Media, Exeem Services, Exeem Library, Exeem Missing Platform.",
+    img: "/ExeemPlatform.png", // 🔹 ضع صورة مناسبة هنا
+    iconLists: [
+      "/next.svg",
+      "/re.svg",
+      "/scss.svg",
+      "/tailwind.svg",
+      "/shadcn.png",
+    ],
+    link: "https://exeemegypt.vercel.app/",
+  },
+
+  // 3️⃣ Dr. Hamada Soliman Campaign Website
+  {
+    id: 3,
+    title: "Dr. Hamada Soliman Campaign Website",
+    des: "Official election campaign website showcasing candidate profile and campaign activities.",
+    img: "/HamadaSoliman.png", // 🔹 ضع صورة مناسبة هنا
+    iconLists: ["/next.svg", "/re.svg", "/scss.svg"],
+    link: "https://hamadasoliman.vercel.app/",
+  },
+
+  // 4️⃣ Route Academy Exam Achievement
+  {
+    id: 4,
     title: "Route Academy Exam Achievement - Top Scorer",
     des: "Secured the highest score of 104/100 in the Route Academy exam, showcasing exceptional web development expertise and problem-solving skills.",
     img: "/Exam.jpg",
@@ -98,9 +135,9 @@ export const projects = [
     link: "https://bit.ly/3YP3rOI",
   },
 
-  // Second project - Electrified Project
+  // 5️⃣ Electrified Project
   {
-    id: 2,
+    id: 5,
     title: "Electrified Project - Dynamic Learning Website",
     des: "A website designed for learning purposes, showcasing dynamic components and responsive design.",
     img: "/Electrified.jpg",
@@ -115,18 +152,19 @@ export const projects = [
     link: "https://electrifiedproject.vercel.app/",
   },
 
-  // Fourth project - Graduation Project: Film Details Section
+  // 6️⃣ Graduation Project: Film Details Section
   {
-    id: 3,
+    id: 6,
     title: "Graduation Project - Film Details Section",
     des: "Part of the Digital Egypt Pioneers Initiative, focusing on designing a responsive Film Details section with customizable components.",
     img: "/FilmDetails.jpg",
     iconLists: ["/re.svg", "/vite.svg", "/bootstrap.svg", "/scss.svg"],
     link: "https://movies-app-zeta-one.vercel.app/",
   },
-  // Third project - Bookmark Management App
+
+  // 7️⃣ Bookmark Management App
   {
-    id: 4,
+    id: 7,
     title: "Bookmark Management App - Easy Bookmarking",
     des: "A CRUD application with validation, allowing users to manage bookmarks efficiently and visit sites directly.",
     img: "/BookmarkApp.png",
