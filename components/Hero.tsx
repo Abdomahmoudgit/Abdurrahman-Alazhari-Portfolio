@@ -1,10 +1,10 @@
-import { FaLocationArrow } from "react-icons/fa6";
+import { FaLocationArrow, FaDownload } from "react-icons/fa6";
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import Typed from "typed.js";
 import { useEffect } from "react";
-import LazyImage from './LazyImage';
+import LazyImage from "./LazyImage";
 const Hero = () => {
   useEffect(() => {
     const typed = new Typed("#element", {
@@ -96,13 +96,29 @@ const Hero = () => {
             className="text-center text-[40px] md:text-4xl lg:text-5xl"
           />
 
-          <a href="#projects">
-            <MagicButton
-              title="Show my work"
-              icon={<FaLocationArrow />}
-              position="right"
-            />
-          </a>
+          <div className="flex flex-col md:flex-row gap-6 mt-10 w-full items-center justify-center">
+            <a href="#projects" className="w-full md:w-auto">
+              <MagicButton
+                title="Show my work"
+                icon={<FaLocationArrow />}
+                position="right"
+                className="shadow-lg bg-gradient-to-r from-purple-700 to-blue-700 hover:from-purple-800 hover:to-blue-800"
+              />
+            </a>
+            <a
+              href="https://drive.google.com/uc?export=download&id=1C4SC766EPs-poaAqLkP7vwh5ij-tEGsv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full md:w-auto"
+            >
+              <MagicButton
+                title="Download My CV"
+                icon={<FaDownload />}
+                position="left"
+                className="shadow-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>
