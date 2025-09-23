@@ -212,24 +212,25 @@ export const testimonials = [
 export const companies = [
   {
     id: 1,
+    name: "Exeem",
+    img: "/Exeem.png",
+  },
+  {
+    id: 2,
     name: "Al-azhar University",
     img: "/AU.jpg",
   },
   {
-    id: 2,
+    id: 3,
     name: "Route Academy",
     img: "/Route.jpg",
   },
   {
-    id: 3,
+    id: 4,
     name: "DEPI",
     img: "/depiEN.png",
   },
-  {
-    id: 4,
-    name: "Edraak",
-    img: "/EDraak.jpg",
-  },
+
   {
     id: 5,
     name: "Azhar University Hostel",

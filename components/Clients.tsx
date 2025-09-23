@@ -4,7 +4,7 @@ import React from "react";
 
 import { companies, testimonials } from "@/data";
 import { InfiniteMovingCards } from "./ui/InfiniteCards";
-import LazyImage from './LazyImage';
+import LazyImage from "./LazyImage";
 
 const Clients = () => {
   return (
@@ -33,7 +33,7 @@ const Clients = () => {
                   <LazyImage
                     src={company.img}
                     alt={company.name || "Company logo"}
-                    className="m-2 md:m-0 rounded-full w-16 h-16 border-4 border-white/30 shadow-lg object-cover transition-transform transform hover:scale-110"
+                    className="m-2 p-2 md:m-0 rounded-full w-16 h-16 border-4 border-white/30 shadow-lg object-cover transition-transform transform hover:scale-110"
                   />
                 </div>
                 <span className="text-center font-semibold text-purple shadow-sm text-sm md:text-base">
