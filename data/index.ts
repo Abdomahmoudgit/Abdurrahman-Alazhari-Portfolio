@@ -138,7 +138,7 @@ export const projects = [
 export const testimonials = [
   {
     quote:
-      "I worked with Abdelrahman on our graduation project, where he was responsible for the frontend development. Honestly, he is a highly dedicated and skilled developer who understands his work well and executes tasks efficiently. He tackles challenges with practical and quick solutions while always striving to enhance the final product. Based on my experience working with him, I’d rate him 4.9 out of 5, and I highly recommend him for any team in need of a proficient frontend developer.",
+      "I worked with Abdelrahman on our graduation project, where he was responsible for the frontend development. Honestly, he is a highly dedicated and skilled developer who understands his work well and executes tasks efficiently. He tackles challenges with practical and quick solutions while always striving to enhance the final product. Based on my experience working with him, I'd rate him 4.9 out of 5, and I highly recommend him for any team in need of a proficient frontend developer.",
     name: "Eng. Ahmed Yasser",
     title: "Frontend Engineer",
     img: "/ahmedyaser.jpg",
@@ -152,14 +152,14 @@ export const testimonials = [
   },
   {
     quote:
-      "One of Abdelrahman’s greatest strengths is his ability to listen attentively and absorb knowledge from everyone around him. He has an incredible passion for learning and continuously seeks to expand his expertise from every possible source. His adaptability and curiosity make him a well-rounded developer. His dedication to improvement and staying ahead in the field allows him to make well-informed decisions in both his professional and personal life.",
+      "One of Abdelrahman's greatest strengths is his ability to listen attentively and absorb knowledge from everyone around him. He has an incredible passion for learning and continuously seeks to expand his expertise from every possible source. His adaptability and curiosity make him a well-rounded developer. His dedication to improvement and staying ahead in the field allows him to make well-informed decisions in both his professional and personal life.",
     name: "Eng. Abdullah Samir",
     title: "Backend Engineer",
     img: "/profile.svg",
   },
   {
     quote:
-      "Working with Abdelrahman has been a fantastic experience. He is truly one of the best! When it comes to leadership, he is absolutely top-notch. His ability to organize and structure everything is remarkable. If he ever considers pursuing a leadership role, I highly recommend it—he has all the qualities of a great leader. His communication skills, organization, and ability to create engaging content are outstanding. Honestly, hats off to him! This is not just a compliment; it’s based on my firsthand experience working with him.",
+      "Working with Abdelrahman has been a fantastic experience. He is truly one of the best! When it comes to leadership, he is absolutely top-notch. His ability to organize and structure everything is remarkable. If he ever considers pursuing a leadership role, I highly recommend it—he has all the qualities of a great leader. His communication skills, organization, and ability to create engaging content are outstanding. Honestly, hats off to him! This is not just a compliment; it's based on my firsthand experience working with him.",
     name: "Youssef Shaaban",
     title: "Full Stack Developer",
     img: "/yousifshaban.jpg",
@@ -283,13 +283,13 @@ export const socialMedia = [
   },
   {
     id: 4,
-    img: "/youtup.svg",
-    link: "https://youtube.com/@abdolrahmanmahmoud1542?si=XyYks2sOJ9rCkZMj",
+    img: "/insta.svg",
+    link: "https://instagram.com/abdolrahmanmahmoud1542",
   },
   {
     id: 5,
-    img: "/Facebook.svg",
-    link: "https://www.facebook.com/AbdurrahmanM.Alazhari/",
+    img: "/link.svg",
+    link: "https://abdolrahman.dev",
   },
   // {
   //   id: 6,
