@@ -34,10 +34,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <script
-            src="//code.tidio.co/0cnpek0ojsi8du8p5oadlmxnun4mnnlr.js"
-            async
-          ></script>
         </ThemeProvider>
       </body>
     </html>
