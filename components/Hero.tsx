@@ -106,9 +106,7 @@ const Hero = () => {
               />
             </a>
             <a
-              href="https://drive.google.com/uc?export=download&id=1C4SC766EPs-poaAqLkP7vwh5ij-tEGsv"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://drive.google.com/uc?export=download&id=18YcksqYKqW-rn4bNENaU_-XwKwjnXiFb"
               className="w-full md:w-auto"
             >
               <MagicButton
