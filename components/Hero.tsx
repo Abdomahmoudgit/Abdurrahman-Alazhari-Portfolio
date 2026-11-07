@@ -10,6 +10,13 @@ import { useEffect } from "react";
 
 const Hero = () => {
   useEffect(() => {
+    // Respect "reduce motion": show a static title instead of the typing loop.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const el = document.getElementById("element");
+      if (el) el.textContent = "Frontend Engineer.";
+      return;
+    }
+
     const typed = new Typed("#element", {
       strings: [
         "Frontend Engineer.",

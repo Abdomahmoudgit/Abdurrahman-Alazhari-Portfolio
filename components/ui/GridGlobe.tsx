@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { useInView, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const World = dynamic(() => import("./Globe").then((m) => m.World), {
@@ -11,6 +10,19 @@ const World = dynamic(() => import("./Globe").then((m) => m.World), {
 const GridGlobe = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "200px" });
+  const reduceMotion = useReducedMotion();
+
+  // Skip the Three.js globe on phones: it's heavy and the tile is small there.
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const showGlobe = inView && isDesktop && !reduceMotion;
 
   const globeConfig = {
     pointSize: 4,
@@ -412,7 +424,7 @@ const GridGlobe = () => {
         <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
         <div className="absolute w-full h-72 md:h-full z-10">
           {/* Three.js is only downloaded once the tile is near the viewport */}
-          {inView && <World data={arcs} globeConfig={globeConfig} />}
+          {showGlobe && <World data={arcs} globeConfig={globeConfig} />}
         </div>
       </div>
     </div>
