@@ -120,7 +120,11 @@ export const InfiniteMovingCards = ({
                   <img
                     className="me-3 w-[64px] h-[64px] rounded-full border-4 border-white shadow-lg object-cover transition-transform transform hover:scale-110"
                     src={item.img}
-                    alt="profile"
+                    alt={item.name}
+                    width={64}
+                    height={64}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <span className="flex flex-col gap-1">

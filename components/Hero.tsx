@@ -1,19 +1,21 @@
+"use client";
+
+import Image from "next/image";
 import { FaLocationArrow, FaDownload } from "react-icons/fa6";
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import Typed from "typed.js";
 import { useEffect } from "react";
-import LazyImage from "./LazyImage";
+
 const Hero = () => {
   useEffect(() => {
     const typed = new Typed("#element", {
       strings: [
-        "Frontend Developer",
-        "Web Developer.",
-        "React Developer.",
-        "Next Developer.",
-        "Computer engineer.",
+        "Frontend Engineer.",
+        "React.js Developer.",
+        "Next.js Developer.",
+        "Computer Engineer.",
       ],
       smartBackspace: true,
       loop: true,
@@ -28,7 +30,7 @@ const Hero = () => {
     };
   }, []);
   return (
-    <div id="about" className="pt-[130px] pb-16 ">
+    <div id="home" className="pt-[130px] pb-16 ">
       {/**
        *  UI: Spotlights
        *  Link: https://ui.aceternity.com/components/spotlight
@@ -63,15 +65,17 @@ const Hero = () => {
       </div>
       <div className="flex flex-col items-center justify-center">
         <div className="">
-          <LazyImage
-            src="/mineImage.png"
+          <Image
+            src="/mineImage.webp"
             alt="Abdurrahman Al-Azhari"
-            className="m-2 md:m-4 w-[150px] h-[150px
-            rounded-full border-4 border-white/30 shadow-lg object-cover transition-transform hover:scale-110 relative z-50 "
+            width={150}
+            height={150}
+            priority
+            className="m-2 md:m-4 w-[150px] h-[150px] rounded-full border-4 border-white/30 shadow-lg object-cover transition-transform hover:scale-110 relative z-50"
           />
         </div>
         <p className="text-center  relative md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-          Hi! I&apos;m Abdurrahman Al-Azhari,a professional
+          Hi! I&apos;m Abdurrahman Al-Azhari, a professional
           <br />
           <span
             id="element"
@@ -83,7 +87,7 @@ const Hero = () => {
       <div className="flex justify-center relative my-20 mt-4 z-10">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
           <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
-            Dynamic Web Magic with React.js
+            Frontend Engineer | React.js &amp; Next.js
           </p>
 
           {/**
@@ -97,25 +101,21 @@ const Hero = () => {
           />
 
           <div className="flex flex-col md:flex-row gap-6 mt-10 w-full items-center justify-center">
-            <a href="#projects" className="w-full md:w-auto">
-              <MagicButton
-                title="Show my work"
-                icon={<FaLocationArrow />}
-                position="right"
-                className="shadow-lg bg-gradient-to-r from-purple-700 to-blue-700 hover:from-purple-800 hover:to-blue-800"
-              />
-            </a>
-            <a
-              href="https://drive.google.com/uc?export=download&id=18YcksqYKqW-rn4bNENaU_-XwKwjnXiFb"
-              className="w-full md:w-auto"
-            >
-              <MagicButton
-                title="Download My CV"
-                icon={<FaDownload />}
-                position="left"
-                className="shadow-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600"
-              />
-            </a>
+            <MagicButton
+              title="Show my work"
+              icon={<FaLocationArrow />}
+              position="right"
+              href="#projects"
+              className="shadow-lg"
+            />
+            <MagicButton
+              title="Download My CV"
+              icon={<FaDownload />}
+              position="left"
+              href="/Abdurrahman-Alazhari-CV.pdf"
+              download
+              className="shadow-lg"
+            />
           </div>
         </div>
       </div>
