@@ -1,7 +1,14 @@
+"use client";
+
 import React from "react";
+import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
+// Three.js canvas is only rendered on hover, so load its chunk on demand.
+const CanvasRevealEffect = dynamic(
+  () => import("./ui/CanvasRevealEffect").then((m) => m.CanvasRevealEffect),
+  { ssr: false }
+);
 
 const Approach = () => {
   return (
