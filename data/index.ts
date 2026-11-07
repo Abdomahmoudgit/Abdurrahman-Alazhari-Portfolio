@@ -6,10 +6,14 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
+export const siteUrl = "https://abdurrahmanalazhari.vercel.app";
+
+// Kept to 5 items so the floating navbar fits on phones.
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
+  { name: "Experience", link: "#experience" },
+  { name: "Skills", link: "#skills" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -80,7 +84,16 @@ export const gridItems = [
   },
 ];
 
-export const projects = [
+// `github` is optional: only set for projects with a public repo.
+export const projects: {
+  id: number;
+  title: string;
+  des: string;
+  img: string;
+  iconLists: string[];
+  link: string;
+  github?: string;
+}[] = [
   {
     id: 1,
     title: "University Housing Management System",
@@ -118,6 +131,7 @@ export const projects = [
     img: "/FilmDetails.webp",
     iconLists: ["/re.svg", "/javascript.png", "/bootstrap.svg", "/vite.svg"],
     link: "https://movies-app-zeta-one.vercel.app/",
+    github: "https://github.com/Abdomahmoudgit/Movies-App",
   },
   {
     id: 5,
@@ -126,6 +140,7 @@ export const projects = [
     img: "/Exam.webp",
     iconLists: ["/html.svg", "/css.svg", "/bootstrap.svg"],
     link: "https://bit.ly/3YP3rOI",
+    github: "https://github.com/Abdomahmoudgit/Bootstrap-Exam",
   },
 ];
 
@@ -235,5 +250,78 @@ export const socialMedia = [
     label: "Facebook",
     Icon: FaFacebook,
     link: "https://www.facebook.com/AbdurrahmanM.Alazhari/",
+  },
+];
+
+export const skills = [
+  {
+    group: "Frontend",
+    items: [
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Bootstrap",
+      "SCSS",
+      "shadcn/ui",
+    ],
+  },
+  {
+    group: "State & APIs",
+    items: [
+      "Redux Toolkit",
+      "React Query",
+      "REST APIs",
+      "GraphQL",
+      "React Hook Form",
+      "Zod",
+    ],
+  },
+  {
+    group: "Tools",
+    items: [
+      "Git",
+      "GitHub",
+      "Vite",
+      "Postman",
+      "Swagger",
+      "Figma",
+      "Agile/Scrum",
+      "Jira",
+    ],
+  },
+];
+
+export const education = [
+  {
+    id: 1,
+    title: "B.Sc. in Computer Science & Engineering",
+    place: "Al-Azhar University, Faculty of Engineering — Cairo",
+    period: "2020 – 2025",
+    highlight: "Grade: Very Good · Graduation Project: Excellent",
+  },
+  {
+    id: 2,
+    title: "Frontend Development Bootcamp",
+    place: "Elevate Tech Academy — Online",
+    period: "Feb 2026 – Jul 2026",
+    highlight: "Next.js · Clean Architecture · APIs · Git · Agile/Scrum",
+  },
+  {
+    id: 3,
+    title: "Frontend Development Diploma",
+    place: "Route IT Training Center — Cairo",
+    period: "Sep 2024 – Mar 2025",
+    highlight: "React.js · Responsive UI · Top Scorer (104/100)",
+  },
+  {
+    id: 4,
+    title: "React Developer Training",
+    place: "Digital Egypt Pioneers Initiative (DEPI) — Cairo",
+    period: "2023 – 2024",
+    highlight: "React.js · Team Leader",
   },
 ];
