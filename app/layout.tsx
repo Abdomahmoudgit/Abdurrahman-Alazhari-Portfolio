@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Abdurrahman Al-Azhari", url: siteUrl }],
   alternates: { canonical: "/" },
+  // Google Search Console ownership check (HTML tag method)
+  verification: {
+    google: "n73pkzu6owJWRIZJTgLDqaqjrQEtZMIdnE4Jb6NQlaI",
+  },
   // The share image comes from app/opengraph-image.tsx.
   openGraph: {
     title,
