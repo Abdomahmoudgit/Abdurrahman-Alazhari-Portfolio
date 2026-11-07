@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   // Google Search Console ownership check (HTML tag method)
   verification: {
-    google: "n73pkzu6owJWRIZJTgLDqaqjrQEtZMIdnE4Jb6NQlaI",
+    google: "GDye4cSWlvJargdgTCNQjOSB55t3eDhY3cWvSjDAkqo",
   },
   // The share image comes from app/opengraph-image.tsx.
   openGraph: {
