@@ -13,6 +13,8 @@
     "@react-three/drei": "^9.105.4",
     "@react-three/fiber": "^8.16.2",
     "@types/three": "^0.163.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.1.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.25",
     "mini-svg-data-uri": "^1.4.4",

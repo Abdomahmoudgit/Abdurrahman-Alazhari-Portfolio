@@ -9,9 +9,9 @@ import { PinContainer } from "./ui/Pin";
 const RecentProjects = () => {
   return (
     <div id="projects" className="py-20">
-      <h1 className="heading">
+      <h2 className="heading">
         A glimpse of my <span className="text-purple">latest projects</span>
-      </h1>
+      </h2>
       <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
         {projects.map((item) => (
           // Plain div: PinContainer already renders its own <a>, and nested
@@ -26,7 +26,13 @@ const RecentProjects = () => {
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
                   style={{ backgroundColor: "#13162D" }}
                 >
-                  <Image src="/bg.png" alt="" fill sizes="384px" />
+                  <Image
+                    src="/bg.png"
+                    alt=""
+                    fill
+                    sizes="384px"
+                    className="object-cover"
+                  />
                 </div>
                 <Image
                   src={item.img}
@@ -38,9 +44,9 @@ const RecentProjects = () => {
                 />
               </div>
 
-              <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
+              <h3 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
                 {item.title}
-              </h1>
+              </h3>
 
               <p
                 className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"

@@ -1,7 +1,8 @@
 import { FaLocationArrow } from "react-icons/fa6";
 
-import { socialMedia } from "@/data";
+import { contactEmail, socialMedia, web3formsKey } from "@/data";
 import MagicButton from "./MagicButton";
+import ContactForm from "./ContactForm";
 
 const Footer = () => {
   return (
@@ -11,20 +12,25 @@ const Footer = () => {
       style={{ backgroundImage: "url(/footer-grid.svg)" }}
     >
       <div className="flex flex-col items-center">
-        <h1 className="heading lg:max-w-[45vw]">
+        <h2 className="heading lg:max-w-[45vw]">
           Ready to take <span className="text-purple">your</span> digital
           presence to the next level?
-        </h1>
+        </h2>
         <p className="text-white-200 md:mt-10 my-5 text-center">
           Let&apos;s connect and explore how I can help you build high-quality,
           responsive, and scalable web solutions.
         </p>
-        <MagicButton
-          title="Let's get in touch"
-          icon={<FaLocationArrow />}
-          position="right"
-          href="mailto:abdolrahmanalazhary@gmail.com"
-        />
+        {/* Falls back to a mailto button until a Web3Forms key is set */}
+        {web3formsKey ? (
+          <ContactForm />
+        ) : (
+          <MagicButton
+            title="Let's get in touch"
+            icon={<FaLocationArrow />}
+            position="right"
+            href={`mailto:${contactEmail}`}
+          />
+        )}
       </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
         <p className="md:text-base text-sm md:font-normal font-light mb-6 md:mb-0 text-white-200">

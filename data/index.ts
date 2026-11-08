@@ -7,6 +7,10 @@ import {
 } from "react-icons/fa6";
 
 export const siteUrl = "https://abdurrahmanalazhari.vercel.app";
+export const contactEmail = "abdolrahmanalazhary@gmail.com";
+// Web3Forms public access key for the contact form (safe to expose; it only
+// lets people send messages to the owner's inbox). Empty = show mailto button.
+export const web3formsKey = "";
 
 // Kept to 5 items so the floating navbar fits on phones.
 export const navItems = [
