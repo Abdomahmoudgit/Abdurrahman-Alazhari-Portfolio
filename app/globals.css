@@ -66,12 +66,46 @@
   }
 }
 
+/* Site theme tokens (RGB channels so Tailwind opacity modifiers work).
+   Light is the base; .dark (set by next-themes, the default) overrides it.
+   Tailwind maps these in tailwind.config.ts: page, fg, line, chip, and the
+   older names black-100 / white-100 / white-200 / blue-100 / purple. */
+@layer base {
+  :root {
+    --c-page: 246 247 252;
+    --c-fg: 17 20 45;
+    --c-fg-muted: 72 78 110;
+    --c-fg-soft: 88 94 126;
+    --c-tagline: 70 80 140;
+    --c-brand: 118 72 214;
+    --c-chip: 232 235 247;
+    --c-line: 15 23 42;
+    --card-from: 255 255 255;
+    --card-to: 240 242 250;
+    --nav-bg: 255 255 255 / 0.8;
+  }
+
+  .dark {
+    --c-page: 0 3 25;
+    --c-fg: 255 255 255;
+    --c-fg-muted: 190 193 221;
+    --c-fg-soft: 193 194 211;
+    --c-tagline: 228 236 255;
+    --c-brand: 203 172 249;
+    --c-chip: 16 19 46;
+    --c-line: 255 255 255;
+    --card-from: 4 7 29;
+    --card-to: 12 14 35;
+    --nav-bg: 17 25 40 / 0.75;
+  }
+}
+
 @layer base {
   * {
     @apply border-border !scroll-smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-page text-fg;
   }
   button {
     @apply active:outline-none;
@@ -81,5 +115,13 @@
 @layer utilities {
   .heading {
     @apply font-bold text-4xl md:text-5xl text-center;
+  }
+  /* The card background used across sections (was an inline style). */
+  .card-surface {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--card-from)) 0%,
+      rgb(var(--card-to)) 100%
+    );
   }
 }

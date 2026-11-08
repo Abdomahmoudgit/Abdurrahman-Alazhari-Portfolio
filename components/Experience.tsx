@@ -2,50 +2,45 @@
 
 import Image from "next/image";
 
-import { workExperience } from "@/data";
+import type { Content, Heading } from "@/data";
+import SectionHeading from "./SectionHeading";
 import { Button } from "./ui/MovingBorders";
 
-const Experience = () => {
+const Experience = ({
+  items,
+  heading,
+}: {
+  items: Content["workExperience"];
+  heading: Heading;
+}) => {
   return (
-    <div id="experience" className="py-20 w-full">
-      <h2 className="heading">
-        My <span className="text-purple">work experience</span>
-      </h2>
+    <section id="experience" className="py-20 w-full">
+      <SectionHeading heading={heading} />
 
-      <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
-        {workExperience.map((card, i) => (
+      <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-6 md:gap-10">
+        {items.map((card, i) => (
           <Button
             key={card.id}
             // Fixed per-card duration (Math.random here caused hydration mismatches)
             duration={12000 + i * 2500}
             borderRadius="1.75rem"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-              borderRadius: `calc(1.75rem* 0.96)`,
-            }}
             as="div"
-            className="flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+            containerClassName="card-surface"
+            className="flex-1"
           >
-            <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
+            <div className="flex lg:flex-row flex-col lg:items-center p-4 py-6 md:p-5 lg:p-10 gap-3">
               <Image
                 src={card.thumbnail}
                 alt=""
                 width={128}
                 height={120}
-                className="lg:w-32 md:w-20 w-16 h-auto"
+                className="lg:w-32 md:w-20 w-16 h-auto shrink-0"
               />
               <div className="lg:ms-5">
-                <h3 className="text-start text-xl md:text-2xl font-bold">
-                  {card.title}
-                </h3>
-                <p className="text-start text-purple text-sm md:text-base mt-1">
-                  {card.company}
-                </p>
-                <p className="text-start text-white-200 text-xs md:text-sm mt-1">
-                  {card.period}
-                </p>
-                <p className="text-start text-white-100 mt-3 font-semibold">
+                <h3 className="text-start text-xl md:text-2xl font-bold text-fg">{card.title}</h3>
+                <p className="text-start text-purple text-sm md:text-base mt-1">{card.company}</p>
+                <p className="text-start text-fg-soft text-xs md:text-sm mt-1">{card.period}</p>
+                <p className="text-start text-fg-muted mt-3 text-sm md:text-base font-medium leading-relaxed rtl:leading-loose">
                   {card.desc}
                 </p>
               </div>
@@ -53,7 +48,7 @@ const Experience = () => {
           </Button>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -4,7 +4,9 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 
+import type { Content, Heading } from "@/data";
 import { cn } from "@/lib/utils";
+import SectionHeading from "./SectionHeading";
 
 // Three.js canvas is only rendered on hover, so load its chunk on demand.
 const CanvasRevealEffect = dynamic(
@@ -12,51 +14,36 @@ const CanvasRevealEffect = dynamic(
   { ssr: false }
 );
 
-const Approach = () => {
+const Approach = ({
+  cards,
+  heading,
+}: {
+  cards: Content["approach"];
+  heading: Heading;
+}) => {
+  const [plan, build, launch] = cards;
   return (
     <section className="w-full py-20">
-      <h2 className="heading">
-        My <span className="text-purple">approach</span>
-      </h2>
-      {/* remove bg-white dark:bg-black */}
-      <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-        {/* add des prop */}
-        <Card
-          title="Planning & Strategy"
-          icon={<AceternityIcon order="Phase 1" />}
-          des="We start by defining project goals, target users, and key features. I focus on user experience, ensuring a smooth and scalable structure before diving into development."
-        >
+      <SectionHeading heading={heading} />
+      <div className="my-12 md:my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-10 lg:gap-4">
+        <Card title={plan.title} icon={<AceternityIcon order={plan.phase} />} des={plan.des}>
           <CanvasRevealEffect
             animationSpeed={5.1}
-            // add these classed for the border rounded overflowing -> rounded-3xl overflow-hidden
             containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
           />
         </Card>
-        <Card
-          title="Development & Progress Update"
-          icon={<AceternityIcon order="Phase 2" />}
-          des="With a clear roadmap, I bring ideas to life using React and modern front-end tools. You'll get regular updates, ensuring alignment with the project vision."
-        >
+        <Card title={build.title} icon={<AceternityIcon order={build.phase} />} des={build.des}>
           <CanvasRevealEffect
             animationSpeed={3}
-            // change bg-black to bg-pink-900
             containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
             colors={[
-              // change the colors of the
               [255, 166, 158],
               [221, 255, 247],
             ]}
             dotSize={2}
           />
-          {/* Radial gradient for the cute fade */}
-          {/* remove this one */}
-          {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
         </Card>
-        <Card
-          title="Testing & Launch"
-          icon={<AceternityIcon order="Phase 3" />}
-          des="Before launch, I optimize performance, ensure responsiveness, and fix any issues. The result? A smooth, high-quality web experience ready for users."
-        >
+        <Card title={launch.title} icon={<AceternityIcon order={launch.phase} />} des={launch.des}>
           <CanvasRevealEffect
             animationSpeed={3}
             containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
@@ -91,18 +78,12 @@ const Card = ({
       onPointerDown={(e) => {
         if (e.pointerType === "touch") setHovered((h) => !h);
       }}
-      className="border border-black/[0.2] flex items-center justify-center
-       dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative min-h-[22rem] lg:h-[35rem] rounded-3xl cursor-pointer select-none"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-      }}
+      className="border border-line/20 flex items-center justify-center max-w-sm w-full mx-auto p-4 relative min-h-[22rem] lg:h-[35rem] rounded-3xl cursor-pointer select-none card-surface"
     >
-      {/* change to h-10 w-10 , add opacity-30  */}
-      <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
+      <Icon className="absolute h-10 w-10 -top-3 -left-3 text-fg opacity-30" />
+      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 text-fg opacity-30" />
+      <Icon className="absolute h-10 w-10 -top-3 -right-3 text-fg opacity-30" />
+      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 text-fg opacity-30" />
 
       <AnimatePresence>
         {hovered && (
@@ -161,7 +142,7 @@ const AceternityIcon = ({ order }: { order: string }) => {
         />
         <span
           className="inline-flex h-full w-full cursor-pointer items-center 
-        justify-center rounded-full bg-slate-950 px-5 py-2 text-purple backdrop-blur-3xl font-bold text-2xl"
+        justify-center rounded-full bg-slate-950 px-5 py-2 text-[#CBACF9] backdrop-blur-3xl font-bold text-2xl whitespace-nowrap"
         >
           {order}
         </span>
