@@ -21,10 +21,15 @@ export const PinContainer = ({
     "translate(-50%,-50%) rotateX(0deg)"
   );
 
+  // The pin overlay has infinite animations; only mount it while hovered.
+  const [hovered, setHovered] = useState(false);
+
   const onMouseEnter = () => {
+    setHovered(true);
     setTransform("translate(-50%,-50%) rotateX(40deg) scale(0.8)");
   };
   const onMouseLeave = () => {
+    setHovered(false);
     setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
   };
 
@@ -54,7 +59,7 @@ export const PinContainer = ({
           <div className={cn(" relative z-50 ", className)}>{children}</div>
         </div>
       </div>
-      <PinPerspective title={title} href={href} />
+      {hovered && <PinPerspective title={title} href={href} />}
     </div>
   );
 };

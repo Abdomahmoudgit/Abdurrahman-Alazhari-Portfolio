@@ -3,6 +3,8 @@ import React from "react";
 import {
   motion,
   useAnimationFrame,
+  useInView,
+  useReducedMotion,
   useMotionTemplate,
   useMotionValue,
   useTransform,
@@ -84,9 +86,14 @@ export const MovingBorder = ({
   [key: string]: any;
 }) => {
   const pathRef = useRef<any>();
+  const svgRef = useRef<SVGSVGElement>(null);
   const progress = useMotionValue<number>(0);
+  // Only animate while on screen — getPointAtLength every frame is costly.
+  const inView = useInView(svgRef);
+  const reduceMotion = useReducedMotion();
 
   useAnimationFrame((time) => {
+    if (!inView || reduceMotion) return;
     const length = pathRef.current?.getTotalLength();
     if (length) {
       const pxPerMillisecond = length / duration;
@@ -108,6 +115,7 @@ export const MovingBorder = ({
   return (
     <>
       <svg
+        ref={svgRef}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
         className="absolute h-full w-full"

@@ -81,14 +81,15 @@ const Hero = () => {
             className="m-2 md:m-4 w-[150px] h-[150px] rounded-full border-4 border-white/30 shadow-lg object-cover transition-transform hover:scale-110 relative z-50"
           />
         </div>
-        <p className="text-center  relative md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+        {/* The page's single <h1> — styled like the original paragraph */}
+        <h1 className="text-center relative md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl font-normal">
           Hi! I&apos;m Abdurrahman Al-Azhari, a professional
           <br />
           <span
             id="element"
             className=" max-h-[200px] mb-[145px] md:mb-0 md:max-h-none"
           ></span>
-        </p>
+        </h1>
       </div>
 
       <div className="flex justify-center relative my-20 mt-4 z-10">

@@ -8,9 +8,9 @@ const cardStyle = {
 const Skills = () => {
   return (
     <section id="skills" className="py-20 w-full">
-      <h1 className="heading">
+      <h2 className="heading">
         My <span className="text-purple">skills & education</span>
-      </h1>
+      </h2>
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
         {skills.map(({ group, items }) => (
@@ -19,7 +19,7 @@ const Skills = () => {
             className="rounded-3xl border border-white/[0.1] p-6 lg:p-8"
             style={cardStyle}
           >
-            <h2 className="text-xl lg:text-2xl font-bold mb-5">{group}</h2>
+            <h3 className="text-xl lg:text-2xl font-bold mb-5">{group}</h3>
             <ul className="flex flex-wrap gap-2 lg:gap-3">
               {items.map((item) => (
                 <li

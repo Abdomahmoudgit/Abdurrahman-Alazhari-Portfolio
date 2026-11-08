@@ -15,9 +15,9 @@ const CanvasRevealEffect = dynamic(
 const Approach = () => {
   return (
     <section className="w-full py-20">
-      <h1 className="heading">
+      <h2 className="heading">
         My <span className="text-purple">approach</span>
-      </h1>
+      </h2>
       {/* remove bg-white dark:bg-black */}
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
         {/* add des prop */}
@@ -125,14 +125,14 @@ const Card = ({
         >
           {icon}
         </div>
-        <h2
+        <h3
           className={cn(
             "text-white text-center text-3xl relative z-10 mt-4 font-bold transition duration-200",
             hovered ? "opacity-100 -translate-y-2" : "opacity-0"
           )}
         >
           {title}
-        </h2>
+        </h3>
         <p
           className={cn(
             "text-sm relative z-10 mt-4 text-center transition duration-200",
