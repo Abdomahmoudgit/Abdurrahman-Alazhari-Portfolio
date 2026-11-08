@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
 import Skills from "@/components/Skills";
+import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { contactEmail, getContent, siteUrl, type Locale } from "@/data";
 
@@ -68,6 +69,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         />
         <Approach cards={content.approach} heading={content.headings.approach} />
         <Footer content={content} />
+        <ChatWidgetLoader t={content.ui.chat} locale={locale} />
       </div>
     </main>
   );

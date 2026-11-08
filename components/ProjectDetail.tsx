@@ -3,10 +3,11 @@ import Link from "next/link";
 import { FaArrowLeft, FaArrowRight, FaGithub, FaLocationArrow } from "react-icons/fa6";
 
 import type { Content, Project } from "@/data";
+import ChatWidgetLoader from "./ChatWidgetLoader";
 import MagicButton from "./MagicButton";
 import ThemeToggle from "./ui/ThemeToggle";
 
-/** Detail page for one project (server component, no client JS). */
+/** Detail page for one project (server component; only the toggle and chat are client JS). */
 export default function ProjectDetail({
   content,
   project,
@@ -146,6 +147,7 @@ export default function ProjectDetail({
           </Link>
         </nav>
       </article>
+      <ChatWidgetLoader t={ui.chat} locale={content.locale} projectTitle={project.title} />
     </main>
   );
 }

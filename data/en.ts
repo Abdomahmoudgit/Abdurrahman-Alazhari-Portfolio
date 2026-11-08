@@ -163,6 +163,28 @@ const en: Content = {
     prevProject: "Previous project",
     nextProject: "Next project",
     copyright: "Abdurrahman Al-Azhari",
+    chat: {
+      open: "Ask about Abdurrahman",
+      close: "Close chat",
+      title: "Ask me anything",
+      subtitle: "AI assistant · answers from Abdurrahman's portfolio",
+      greeting:
+        "Hi! I can answer questions about Abdurrahman's experience, projects and skills. What would you like to know?",
+      suggestions: [
+        "What did he build for Home Agent?",
+        "What's his tech stack?",
+        "Is he available for freelance work?",
+      ],
+      placeholder: "Type your question…",
+      send: "Send",
+      thinking: "Thinking…",
+      error: "Something went wrong. You can reach Abdurrahman directly on WhatsApp.",
+      unavailable: "The assistant is offline right now — message Abdurrahman on WhatsApp instead.",
+      whatsapp: "Chat on WhatsApp",
+      whatsappMessage: "Hi Abdurrahman, I saw your portfolio and I'd like to talk about working together.",
+      whatsappProjectMessage: "Hi Abdurrahman, I saw your project \"{project}\" on your portfolio and I'd like to talk.",
+      disclaimer: "AI answers can be wrong — confirm details with Abdurrahman.",
+    },
   },
   headings: {
     projects: { before: "A glimpse of my ", accent: "latest projects" },

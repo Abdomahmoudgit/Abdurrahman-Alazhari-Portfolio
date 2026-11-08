@@ -68,6 +68,23 @@ export type Content = {
     prevProject: string;
     nextProject: string;
     copyright: string;
+    chat: {
+      open: string; // floating button label
+      close: string;
+      title: string;
+      subtitle: string;
+      greeting: string;
+      suggestions: string[];
+      placeholder: string;
+      send: string;
+      thinking: string;
+      error: string;
+      unavailable: string; // shown when the API isn't configured
+      whatsapp: string; // WhatsApp button label
+      whatsappMessage: string; // prefilled WhatsApp text
+      whatsappProjectMessage: string; // prefilled text on a project page; {project} is replaced
+      disclaimer: string;
+    };
   };
   headings: {
     projects: Heading;
