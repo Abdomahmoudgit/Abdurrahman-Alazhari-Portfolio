@@ -143,8 +143,6 @@ export const experienceThumbnails = [
   "/HomeAgentLogo.webp",
   "/exp1.svg",
   "/exp2.svg",
-  "/exp3.webp",
-  "/exp4.svg",
 ];
 
 // Same order as the company names in data/en.ts and data/ar.ts.

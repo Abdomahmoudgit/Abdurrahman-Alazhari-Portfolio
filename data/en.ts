@@ -104,11 +104,11 @@ const projectText = [
 ];
 
 const gridText: Record<number, { title: string; description: string }> = {
-  1: { title: "Frontend Engineer building production apps with React & Next.js", description: "" },
+  1: { title: "Building production web apps for real clients", description: "" },
   2: { title: "Collaborating with frontend & backend teams in Agile/Scrum", description: "" },
   3: {
-    title: "My tech stack",
-    description: "React Query, Redux Toolkit, GraphQL, shadcn/ui, React Hook Form, Zod",
+    title: "Tested & production-ready",
+    description: "Typed end to end, unit-tested with Vitest and covered by Playwright E2E tests.",
   },
   4: { title: "Maintainable UI architecture & frontend performance", description: "" },
   5: {
@@ -142,16 +142,16 @@ const en: Content = {
     themeToLight: "Switch to light mode",
     themeToDark: "Switch to dark mode",
     heroGreeting: "Hi! I'm Abdurrahman Al-Azhari, a professional",
-    heroTyped: ["Frontend Engineer.", "React.js Developer.", "Next.js Developer.", "Computer Engineer."],
-    heroTagline: "Frontend Engineer | React.js & Next.js",
+    heroTyped: ["React.js Developer.", "Next.js Developer.", "Full-Stack Developer.", "Computer Engineer."],
+    heroTagline: "React.js · Next.js · TypeScript · Supabase",
     heroHeadline: "Building modern, responsive, and interactive user interfaces.",
     heroHeadlineAccentFrom: 4,
     showWork: "Show my work",
     downloadCv: "Download My CV",
     copyEmail: "Copy my email address",
     emailCopied: "Email is Copied!",
-    stackLeft: ["React.js", "Next.js", "TypeScript"],
-    stackRight: ["Tailwind", "Redux Toolkit", "React Query"],
+    stackLeft: ["TypeScript", "Vitest", "Playwright"],
+    stackRight: ["Zod", "Supabase", "Cloudflare"],
     liveSite: "Live Site",
     github: "GitHub",
     details: "Details",
@@ -255,22 +255,7 @@ const en: Content = {
       desc: "Delivered 5+ production projects with Next.js and React.js. Improved performance by reducing unnecessary Client Components and leveraging Next.js Server Components. Developed 20+ reusable, responsive UI components with Tailwind CSS, SCSS, and shadcn/ui.",
       thumbnail: experienceThumbnails[2],
     },
-    {
-      id: 3,
-      title: "Frontend Development Diploma",
-      company: "Route IT Training Center – Cairo, Egypt",
-      period: "Sep 2024 – Mar 2025",
-      desc: "Intensive React.js and responsive UI training. Achieved Top Scorer (104/100) in the Web Development Program.",
-      thumbnail: experienceThumbnails[3],
-    },
-    {
-      id: 4,
-      title: "React Developer Training",
-      company: "Digital Egypt Pioneers Initiative (DEPI) – Cairo",
-      period: "2023 – 2024",
-      desc: "Hands-on React.js training through real projects. Served as Team Leader and built the Movie Recommendation App.",
-      thumbnail: experienceThumbnails[4],
-    },
+    // Training (Route, DEPI, Elevate) lives only in `education` to avoid repeating it.
   ],
   skills: [
     { group: "Frontend", items: skillItems.frontend },
@@ -304,7 +289,7 @@ const en: Content = {
       title: "React Developer Training",
       place: "Digital Egypt Pioneers Initiative (DEPI) — Cairo",
       period: "2023 – 2024",
-      highlight: "React.js · Team Leader",
+      highlight: "React.js · Team Leader · Built the Movie Recommendation App",
     },
   ],
   approach: [

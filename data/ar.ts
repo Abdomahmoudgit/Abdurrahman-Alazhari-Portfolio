@@ -103,11 +103,11 @@ const projectText = [
 ];
 
 const gridText: Record<number, { title: string; description: string }> = {
-  1: { title: "مهندس واجهات أمامية أبني تطبيقات حقيقية باستخدام React و Next.js", description: "" },
+  1: { title: "أبني تطبيقات ويب حقيقية لعملاء حقيقيين", description: "" },
   2: { title: "أعمل مع فرق الواجهات الأمامية والخلفية بمنهجية Agile/Scrum", description: "" },
   3: {
-    title: "التقنيات التي أستخدمها",
-    description: "React Query, Redux Toolkit, GraphQL, shadcn/ui, React Hook Form, Zod",
+    title: "مُختبَر وجاهز للإنتاج",
+    description: "كود مكتوب بـ TypeScript، مع اختبارات وحدات بـ Vitest واختبارات شاملة بـ Playwright.",
   },
   4: { title: "بنية واجهات قابلة للصيانة وأداء عالٍ", description: "" },
   5: {
@@ -141,16 +141,16 @@ const ar: Content = {
     themeToLight: "التبديل إلى الوضع الفاتح",
     themeToDark: "التبديل إلى الوضع الداكن",
     heroGreeting: "أهلًا! أنا عبدالرحمن الأزهري",
-    heroTyped: ["مهندس واجهات أمامية.", "مطوّر React.js.", "مطوّر Next.js.", "مهندس حاسبات."],
-    heroTagline: "مهندس واجهات أمامية | React.js و Next.js",
+    heroTyped: ["مطوّر React.js.", "مطوّر Next.js.", "مطوّر Full-Stack.", "مهندس حاسبات."],
+    heroTagline: "React.js · Next.js · TypeScript · Supabase",
     heroHeadline: "أبني واجهات مستخدم حديثة ومتجاوبة وتفاعلية.",
     heroHeadlineAccentFrom: 3,
     showWork: "شاهد أعمالي",
     downloadCv: "حمّل سيرتي الذاتية",
     copyEmail: "انسخ بريدي الإلكتروني",
     emailCopied: "تم نسخ البريد!",
-    stackLeft: ["React.js", "Next.js", "TypeScript"],
-    stackRight: ["Tailwind", "Redux Toolkit", "React Query"],
+    stackLeft: ["TypeScript", "Vitest", "Playwright"],
+    stackRight: ["Zod", "Supabase", "Cloudflare"],
     liveSite: "الموقع",
     github: "GitHub",
     details: "التفاصيل",
@@ -254,22 +254,7 @@ const ar: Content = {
       desc: "سلّمت أكثر من 5 مشاريع في بيئة الإنتاج باستخدام Next.js و React.js. حسّنت الأداء بتقليل الـ Client Components غير الضرورية والاستفادة من Server Components في Next.js. طوّرت أكثر من 20 مكونًا متجاوبًا وقابلًا لإعادة الاستخدام باستخدام Tailwind CSS و SCSS و shadcn/ui.",
       thumbnail: experienceThumbnails[2],
     },
-    {
-      id: 3,
-      title: "دبلومة تطوير الواجهات الأمامية",
-      company: "مركز Route للتدريب – القاهرة، مصر",
-      period: "سبتمبر 2024 – مارس 2025",
-      desc: "تدريب مكثّف على React.js وتصميم الواجهات المتجاوبة. حصلت على المركز الأول (104/100) في برنامج تطوير الويب.",
-      thumbnail: experienceThumbnails[3],
-    },
-    {
-      id: 4,
-      title: "تدريب مطوّر React",
-      company: "مبادرة رواد مصر الرقمية (DEPI) – القاهرة",
-      period: "2023 – 2024",
-      desc: "تدريب عملي على React.js من خلال مشاريع حقيقية. عملت كقائد فريق وبنيت تطبيق ترشيح الأفلام.",
-      thumbnail: experienceThumbnails[4],
-    },
+    // Training (Route, DEPI, Elevate) lives only in `education` to avoid repeating it.
   ],
   skills: [
     { group: "الواجهات الأمامية", items: skillItems.frontend },
@@ -303,7 +288,7 @@ const ar: Content = {
       title: "تدريب مطوّر React",
       place: "مبادرة رواد مصر الرقمية (DEPI) — القاهرة",
       period: "2023 – 2024",
-      highlight: "React.js · قائد فريق",
+      highlight: "React.js · قائد فريق · بنيت تطبيق ترشيح الأفلام",
     },
   ],
   approach: [
