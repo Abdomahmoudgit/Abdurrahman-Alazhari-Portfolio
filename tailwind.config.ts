@@ -15,6 +15,7 @@ const config = {
     "./app/**/*.{js,jsx,ts,tsx}",
     "./src/**/*.{js,jsx,ts,tsx}",
     "./data/**/*.{js,jsx,ts,tsx}",
+    "./lib/**/*.{js,jsx,ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -161,6 +162,22 @@ const config = {
             transform: "translate(calc(-50% - 0.5rem))",
           },
         },
+        // Hero headline word fade-in (TextGenerateEffect)
+        "word-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        // Expanding rings on project-card hover (Pin)
+        "pin-ripple": {
+          "0%": { opacity: "0", transform: "translate(-50%, -50%) scale(0)" },
+          "33%": { opacity: "1" },
+          "66%": { opacity: "0.5" },
+          "100%": { opacity: "0", transform: "translate(-50%, -50%) scale(1)" },
+        },
+        // Glow travelling around a card border (MovingBorders)
+        "border-spin": {
+          to: { transform: "translate(-50%, -50%) rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -174,6 +191,9 @@ const config = {
         fifth: "moveInCircle 20s ease infinite",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        "word-in": "word-in 1.2s ease both",
+        "pin-ripple": "pin-ripple 6s linear infinite both",
+        "border-spin": "border-spin var(--border-duration, 12s) linear infinite",
       },
     },
   },

@@ -68,6 +68,23 @@ export type Content = {
     prevProject: string;
     nextProject: string;
     copyright: string;
+    chat: {
+      open: string; // floating button label
+      close: string;
+      title: string;
+      subtitle: string;
+      greeting: string;
+      suggestions: string[];
+      placeholder: string;
+      send: string;
+      thinking: string;
+      error: string;
+      unavailable: string; // shown when the API isn't configured
+      whatsapp: string; // WhatsApp button label
+      whatsappMessage: string; // prefilled WhatsApp text
+      whatsappProjectMessage: string; // prefilled text on a project page; {project} is replaced
+      disclaimer: string;
+    };
   };
   headings: {
     projects: Heading;
@@ -76,6 +93,34 @@ export type Content = {
     skills: Heading;
     approach: Heading;
     contact: Heading;
+  };
+  /** Blog (/blog, /ar/blog). Posts are MDX files in content/blog/{locale}/. */
+  blog: {
+    nav: string;
+    title: string;
+    intro: string;
+    empty: string;
+    readMore: string;
+    backToBlog: string;
+    minRead: string; // "{n} min read"
+    draft: string; // badge shown on drafts (dev only)
+  };
+  /** The printable CV page (/cv, /ar/cv). */
+  cv: {
+    title: string; // job title under the name
+    summary: string;
+    location: string;
+    labels: {
+      summary: string;
+      experience: string;
+      projects: string;
+      skills: string;
+      education: string;
+      print: string;
+      downloadPdf: string;
+      backHome: string;
+      viewOnline: string; // Hero link to /cv
+    };
   };
   contactIntro: string;
   getInTouch: string;

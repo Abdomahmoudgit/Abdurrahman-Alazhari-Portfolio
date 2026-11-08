@@ -1,0 +1,73 @@
+---
+title: "How I built Home Agent: a website, CMS and sales CRM in two weeks"
+description: "Building a production Arabic platform for a smart-home company with Next.js 15, Supabase and Cloudflare — and the security decisions that mattered most."
+date: "2026-11-08"
+draft: true
+---
+
+Home Agent installs smart-home systems in Egypt. They needed more than a brochure site: a public website that turns visitors into inspection requests, and a dashboard where the team can run both the content and the sales pipeline without calling a developer.
+
+I built it between October 27 and November 8, 2026 — 122 commits from an empty repo to [homeagenteg.com](https://homeagenteg.com).
+
+## What I built
+
+**The public site** is fully Arabic and right-to-left. Visitors can browse packages and the product catalog, book an inspection, get a package recommendation from a short 5-question quiz, and play with an interactive smart-home demo.
+
+**The admin dashboard** does two jobs:
+
+- **A CMS** — staff manage products, packages, past projects, FAQs, site settings and image uploads. Nothing on the site is hard-coded.
+- **A CRM** — every inspection request becomes a lead that moves through a 9-stage sales pipeline (from *new* and *contacted* through *inspection* and *quote* to *sold*), with notes, an activity log, filters and conversion reports: how many requests became inspections, and how many inspections became sales.
+
+## The stack
+
+- **Next.js 15 (App Router), React 19, TypeScript** for the whole app
+- **Tailwind CSS + shadcn/ui** for the interface
+- **React Query** for server state, **React Hook Form + Zod** for forms and validation
+- **Supabase** — Postgres, Auth, Row Level Security and Storage for images
+- **Cloudflare Workers** via OpenNext for hosting
+- **Vitest** (unit tests) and **Playwright** (end-to-end tests)
+
+## The hardest part: security without a login wall
+
+The interesting problem was access control. Anyone must be able to **submit** an inspection request — no account, no login. But only staff may **read** or **change** leads, and the two staff roles see different things: *admin* has full access, *marketing* works with content and leads.
+
+I didn't put this logic only in the app code. It lives in the database with **Row Level Security**, so even a crafted request straight to the API can't read other people's data. The idea, simplified:
+
+```sql
+-- Anyone can create a lead…
+create policy "public can submit a request"
+  on leads for insert
+  to anon
+  with check (true);
+
+-- …but only signed-in staff can read them.
+create policy "staff can read leads"
+  on leads for select
+  to authenticated
+  using (is_staff());
+```
+
+The app then only has to show the right screens — the database is the real gatekeeper.
+
+## Alerts that can't break the important thing
+
+When a new request arrives, the team gets an instant alert on **Telegram** and by **email** (Resend). The rule I followed: **saving the lead always comes first.** If Telegram or the email service is down, the visitor still gets a success message and the lead is still in the CRM; the failed alert is logged instead of failing the request.
+
+```ts
+// Simplified
+const lead = await saveLead(data); // must succeed
+await Promise.allSettled([notifyTelegram(lead), notifyEmail(lead)]); // best effort
+return lead;
+```
+
+## Tests
+
+A business will use this every day, so I covered it with unit tests in Vitest for the logic and validation, and end-to-end tests in Playwright for the main flows: booking an inspection, signing in, and moving a lead through the pipeline.
+
+## What I'd take to the next project
+
+- Put access rules in the database, not only in the UI.
+- Design side effects (emails, alerts) so they can fail without breaking the main action.
+- Build the admin side early — once the client can edit everything, the site keeps improving without you.
+
+If you're working on something similar, feel free to [message me](https://wa.me/201095664239).
