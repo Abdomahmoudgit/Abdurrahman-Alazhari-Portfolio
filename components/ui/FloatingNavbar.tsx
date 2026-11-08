@@ -18,7 +18,8 @@ export const FloatingNav = ({
   otherLocaleHref,
   className,
 }: {
-  navItems: Content["nav"];
+  /** desktopOnly items are hidden on phones so the bar still fits */
+  navItems: (Content["nav"][number] & { desktopOnly?: boolean })[];
   ui: Content["ui"];
   /** Link to the same site in the other language */
   otherLocaleHref: string;
@@ -57,7 +58,10 @@ export const FloatingNav = ({
           <Link
             key={navItem.link}
             href={navItem.link}
-            className="text-xs sm:text-sm whitespace-nowrap text-fg/80 hover:text-purple transition-colors"
+            className={cn(
+              "text-xs sm:text-sm whitespace-nowrap text-fg/80 hover:text-purple transition-colors",
+              navItem.desktopOnly && "hidden sm:inline"
+            )}
           >
             {navItem.name}
           </Link>

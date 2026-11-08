@@ -194,6 +194,16 @@ const en: Content = {
     approach: { before: "My ", accent: "approach" },
     contact: { before: "Ready to take ", accent: "your", after: " digital presence to the next level?" },
   },
+  blog: {
+    nav: "Blog",
+    title: "Blog",
+    intro: "Notes on the things I build — architecture decisions, lessons learned and what I'd do differently.",
+    empty: "No posts yet — check back soon.",
+    readMore: "Read article",
+    backToBlog: "All articles",
+    minRead: "{n} min read",
+    draft: "Draft",
+  },
   cv: {
     title: "Frontend Engineer | React.js & Next.js",
     summary:

@@ -6,6 +6,7 @@ import Skills from "@/components/Skills";
 import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { contactEmail, getContent, siteUrl, type Locale } from "@/data";
+import { getPosts } from "@/lib/blog";
 
 // Below-the-fold client sections are split into their own chunks.
 // (Skills is a server component with no client JS, so it's imported directly.)
@@ -18,6 +19,11 @@ const Footer = dynamic(() => import("@/components/Footer"));
 /** The whole one-page site for one language ("/" or "/ar"). */
 export default function HomePage({ locale }: { locale: Locale }) {
   const content = getContent(locale);
+  // The Blog link appears once there's at least one published post
+  // (desktop only, so the floating navbar still fits on phones).
+  const navItems = getPosts(locale).length
+    ? [...content.nav, { name: content.blog.nav, link: `${content.base}/blog`, desktopOnly: true }]
+    : content.nav;
 
   // Structured data so search engines understand who this site is about.
   const personJsonLd = {
@@ -43,7 +49,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       />
       <div className="max-w-7xl w-full">
         <FloatingNav
-          navItems={content.nav}
+          navItems={navItems}
           ui={content.ui}
           otherLocaleHref={locale === "ar" ? "/" : "/ar"}
         />

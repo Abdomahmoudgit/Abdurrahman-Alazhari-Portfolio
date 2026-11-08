@@ -94,6 +94,17 @@ export type Content = {
     approach: Heading;
     contact: Heading;
   };
+  /** Blog (/blog, /ar/blog). Posts are MDX files in content/blog/{locale}/. */
+  blog: {
+    nav: string;
+    title: string;
+    intro: string;
+    empty: string;
+    readMore: string;
+    backToBlog: string;
+    minRead: string; // "{n} min read"
+    draft: string; // badge shown on drafts (dev only)
+  };
   /** The printable CV page (/cv, /ar/cv). */
   cv: {
     title: string; // job title under the name

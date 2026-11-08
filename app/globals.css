@@ -112,6 +112,82 @@
   }
 }
 
+/* Blog article body (MDX). Small hand-written prose styles; the typography
+   plugin isn't installed. Uses the theme tokens so it works in both modes. */
+.prose-post {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgb(var(--c-fg-muted));
+}
+[dir="rtl"] .prose-post {
+  line-height: 2;
+}
+.prose-post > * + * {
+  margin-top: 1.1em;
+}
+.prose-post h2 {
+  margin-top: 2.2em;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: rgb(var(--c-fg));
+}
+.prose-post h3 {
+  margin-top: 1.8em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: rgb(var(--c-fg));
+}
+.prose-post strong {
+  color: rgb(var(--c-fg));
+  font-weight: 700;
+}
+.prose-post a {
+  color: rgb(var(--c-brand));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-post ul,
+.prose-post ol {
+  padding-inline-start: 1.4em;
+}
+.prose-post ul {
+  list-style: disc;
+}
+.prose-post ol {
+  list-style: decimal;
+}
+.prose-post li + li {
+  margin-top: 0.4em;
+}
+.prose-post li::marker {
+  color: rgb(var(--c-brand));
+}
+.prose-post code {
+  font-size: 0.9em;
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  background: rgb(var(--c-chip));
+  color: rgb(var(--c-fg));
+}
+.prose-post pre {
+  direction: ltr;
+  text-align: left;
+  overflow-x: auto;
+  border-radius: 14px;
+  padding: 1.1em 1.3em;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  background: #0b0e24;
+  color: #e4e7ff;
+  border: 1px solid rgb(var(--c-line) / 0.1);
+}
+.prose-post pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+
 /* Printing (the /cv page): plain A4, white background, links readable. */
 @media print {
   @page {
