@@ -29,7 +29,7 @@ const Clients = ({
           <InfiniteMovingCards items={testimonials} direction="right" speed="slow" rtl={rtl} />
         </div>
 
-        <div className="flex flex-wrap items-start justify-center gap-4 md:gap-16 mt-10">
+        <div className="flex flex-wrap items-start justify-center gap-4 md:gap-x-4 md:gap-y-6 xl:gap-x-8 mt-10">
           {companies.map((company) => (
             <div
               key={company.id}

@@ -11,7 +11,24 @@ import {
 
 // Arabic site copy. Same shape as data/en.ts.
 
+// Same order as projectBase in data/shared.ts.
 const projectText = [
+  {
+    title: "Home Agent — منصة شركة البيت الذكي",
+    des: "موقع عربي (RTL) في بيئة الإنتاج لشركة تركيب أنظمة البيت الذكي، مع لوحة تحكم تعمل كنظام لإدارة المحتوى (CMS) ونظام لإدارة العملاء والمبيعات (CRM). مبني باستخدام Next.js 15 و TypeScript و Supabase.",
+    details: {
+      overview:
+        "Home Agent شركة لتركيب أنظمة البيت الذكي في مصر. الموقع العام عربي بالكامل (RTL) ويعرض الباقات وكتالوج المنتجات، ويتيح للزائر حجز معاينة، ويرشّح له الباقة المناسبة من خلال اختبار من 5 أسئلة، مع تجربة تفاعلية للبيت الذكي. وخلفه لوحة تحكم تتيح للشركة إدارة الموقع والمبيعات بدون الحاجة لمطوّر.",
+      role: "بنيت المنصة بالكامل وأطلقتها: الموقع العام، ولوحة التحكم، والـ Backend على Supabase، والنشر على Cloudflare Workers عن طريق OpenNext.",
+      features: [
+        "نظام لإدارة كل محتوى الموقع: المنتجات والباقات والمشاريع والأسئلة الشائعة وإعدادات الموقع ورفع الصور",
+        "نظام لإدارة العملاء المحتملين بمسار مبيعات من 9 مراحل، مع ملاحظات وسجل نشاط وفلاتر وتقارير بنسب التحويل (المعاينات والمبيعات)",
+        "صلاحيات حسب الدور (admin / marketing) باستخدام Supabase Auth و Row Level Security — الزائر يقدر يسجّل طلبه بدون تسجيل دخول، لكن قراءة البيانات وتعديلها مقصورة على الموظفين",
+        "تنبيهات فورية لطلبات المعاينة الجديدة على Telegram والبريد الإلكتروني، مصمّمة بحيث لا يؤثر فشل التنبيه على حفظ الطلب",
+        "اختبارات وحدات (Vitest) واختبارات شاملة End-to-End (Playwright)",
+      ],
+    },
+  },
   {
     title: "نظام إدارة المدينة الجامعية",
     des: "لوحة تحكم متعددة الصلاحيات (طالب / مشرف / مسؤول) بدعم كامل للغة العربية من اليمين لليسار، ببنية قابلة للتوسع ومكونات قابلة لإعادة الاستخدام، مع إدارة الحالة والبيانات باستخدام Redux Toolkit و React Query.",
@@ -204,6 +221,7 @@ const ar: Content = {
     },
   ],
   companies: [
+    "Home Agent",
     "Qumra Cloud",
     "Exeem",
     "Elevate Tech Academy",
@@ -213,12 +231,20 @@ const ar: Content = {
   ].map((name, i) => ({ id: i + 1, name, img: companyLogos[i] })),
   workExperience: [
     {
+      id: 5,
+      title: "مطوّر Full-Stack (Next.js) — عمل حر",
+      company: "Home Agent – الفيوم، مصر",
+      period: "أكتوبر 2026 – نوفمبر 2026",
+      desc: "بنيت وأطلقت homeagenteg.com، موقع عربي (RTL) في بيئة الإنتاج لشركة أنظمة بيت ذكي، مع لوحة تحكم تعمل كنظام لإدارة المحتوى ونظام لإدارة العملاء بمسار مبيعات من 9 مراحل وتقارير بنسب التحويل. نفّذت الصلاحيات باستخدام Supabase Auth و Row Level Security، وتنبيهات الطلبات على Telegram والبريد، واختبارات Vitest و Playwright، والنشر على Cloudflare Workers.",
+      thumbnail: experienceThumbnails[0],
+    },
+    {
       id: 1,
       title: "مطوّر Next.js",
       company: "Qumra Cloud – عن بُعد (مصر)",
       period: "أكتوبر 2025 – يناير 2026",
       desc: "بنيت وحدات أساسية في لوحة التحكم باستخدام React/Next.js للمنتجات والطلبات والإشعارات والعروض. بنيت أكثر من 30 مكونًا قابلًا لإعادة الاستخدام باستخدام TypeScript و Tailwind CSS و shadcn/ui. ربطت REST/GraphQL APIs باستخدام React Query (queries و mutations و pagination و caching) ضمن فريق يعمل بمنهجية Agile/Scrum على ClickUp.",
-      thumbnail: experienceThumbnails[0],
+      thumbnail: experienceThumbnails[1],
     },
     {
       id: 2,
@@ -226,7 +252,7 @@ const ar: Content = {
       company: "Exeem – القاهرة، مصر (عن بُعد)",
       period: "يناير 2025 – سبتمبر 2025",
       desc: "سلّمت أكثر من 5 مشاريع في بيئة الإنتاج باستخدام Next.js و React.js. حسّنت الأداء بتقليل الـ Client Components غير الضرورية والاستفادة من Server Components في Next.js. طوّرت أكثر من 20 مكونًا متجاوبًا وقابلًا لإعادة الاستخدام باستخدام Tailwind CSS و SCSS و shadcn/ui.",
-      thumbnail: experienceThumbnails[1],
+      thumbnail: experienceThumbnails[2],
     },
     {
       id: 3,
@@ -234,7 +260,7 @@ const ar: Content = {
       company: "مركز Route للتدريب – القاهرة، مصر",
       period: "سبتمبر 2024 – مارس 2025",
       desc: "تدريب مكثّف على React.js وتصميم الواجهات المتجاوبة. حصلت على المركز الأول (104/100) في برنامج تطوير الويب.",
-      thumbnail: experienceThumbnails[2],
+      thumbnail: experienceThumbnails[3],
     },
     {
       id: 4,
@@ -242,7 +268,7 @@ const ar: Content = {
       company: "مبادرة رواد مصر الرقمية (DEPI) – القاهرة",
       period: "2023 – 2024",
       desc: "تدريب عملي على React.js من خلال مشاريع حقيقية. عملت كقائد فريق وبنيت تطبيق ترشيح الأفلام.",
-      thumbnail: experienceThumbnails[3],
+      thumbnail: experienceThumbnails[4],
     },
   ],
   skills: [

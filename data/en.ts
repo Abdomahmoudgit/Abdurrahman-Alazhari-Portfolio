@@ -11,7 +11,24 @@ import {
 
 // English site copy. Arabic lives in data/ar.ts with the same shape.
 
+// Same order as projectBase in data/shared.ts.
 const projectText = [
+  {
+    title: "Home Agent — Smart Home Company Platform",
+    des: "Production Arabic (RTL) website for a smart-home installation company, with an admin dashboard that works as both a CMS and a sales CRM. Built with Next.js 15, TypeScript and Supabase.",
+    details: {
+      overview:
+        "Home Agent installs smart-home systems in Egypt. The public site is fully Arabic (RTL) and presents packages and a product catalog, lets visitors book an inspection, recommends a package through a 5-question quiz, and includes an interactive smart-home demo. Behind it, an admin dashboard lets the business run the site and its sales without a developer.",
+      role: "I built and shipped the whole platform: the public website, the admin dashboard, the Supabase backend and the deployment on Cloudflare Workers via OpenNext.",
+      features: [
+        "Admin CMS for all site content: products, packages, projects, FAQs, site settings and media uploads",
+        "Lead-management CRM with a 9-stage sales pipeline, activity notes, filters and conversion reports (inspection and sales rates)",
+        "Role-based access (admin / marketing) with Supabase Auth and Row Level Security — visitors can submit requests without logging in, but only staff can read or edit data",
+        "Real-time alerts for new inspection requests via Telegram and email, designed so a failed alert never blocks saving the request",
+        "Covered with unit tests (Vitest) and end-to-end tests (Playwright)",
+      ],
+    },
+  },
   {
     title: "University Housing Management System",
     des: "Role-based dashboard (Student / Supervisor / Admin) with full Arabic RTL support. Scalable architecture with reusable components; state and API data managed with Redux Toolkit and React Query.",
@@ -205,6 +222,7 @@ const en: Content = {
     },
   ],
   companies: [
+    "Home Agent",
     "Qumra Cloud",
     "Exeem",
     "Elevate Tech Academy",
@@ -214,12 +232,20 @@ const en: Content = {
   ].map((name, i) => ({ id: i + 1, name, img: companyLogos[i] })),
   workExperience: [
     {
+      id: 5,
+      title: "Full-Stack Next.js Developer (Freelance)",
+      company: "Home Agent – Fayoum, Egypt",
+      period: "Oct 2026 – Nov 2026",
+      desc: "Built and shipped homeagenteg.com, a production Arabic (RTL) website for a smart-home company, plus an admin dashboard that works as a CMS and a lead CRM with a 9-stage sales pipeline and conversion reports. Implemented role-based access with Supabase Auth and Row Level Security, Telegram and email lead alerts, and Vitest + Playwright tests; deployed on Cloudflare Workers.",
+      thumbnail: experienceThumbnails[0],
+    },
+    {
       id: 1,
       title: "Next.js Developer",
       company: "Qumra Cloud – Remote (Egypt)",
       period: "Oct 2025 – Jan 2026",
       desc: "Built core React/Next.js dashboard modules for Products, Orders, Notifications, and Offers. Built 30+ reusable UI components with TypeScript, Tailwind CSS, and shadcn/ui. Integrated REST/GraphQL APIs with React Query (queries, mutations, pagination, caching) in an Agile/Scrum team using ClickUp.",
-      thumbnail: experienceThumbnails[0],
+      thumbnail: experienceThumbnails[1],
     },
     {
       id: 2,
@@ -227,7 +253,7 @@ const en: Content = {
       company: "Exeem – Cairo, Egypt (Remote)",
       period: "Jan 2025 – Sep 2025",
       desc: "Delivered 5+ production projects with Next.js and React.js. Improved performance by reducing unnecessary Client Components and leveraging Next.js Server Components. Developed 20+ reusable, responsive UI components with Tailwind CSS, SCSS, and shadcn/ui.",
-      thumbnail: experienceThumbnails[1],
+      thumbnail: experienceThumbnails[2],
     },
     {
       id: 3,
@@ -235,7 +261,7 @@ const en: Content = {
       company: "Route IT Training Center – Cairo, Egypt",
       period: "Sep 2024 – Mar 2025",
       desc: "Intensive React.js and responsive UI training. Achieved Top Scorer (104/100) in the Web Development Program.",
-      thumbnail: experienceThumbnails[2],
+      thumbnail: experienceThumbnails[3],
     },
     {
       id: 4,
@@ -243,7 +269,7 @@ const en: Content = {
       company: "Digital Egypt Pioneers Initiative (DEPI) – Cairo",
       period: "2023 – 2024",
       desc: "Hands-on React.js training through real projects. Served as Team Leader and built the Movie Recommendation App.",
-      thumbnail: experienceThumbnails[3],
+      thumbnail: experienceThumbnails[4],
     },
   ],
   skills: [
