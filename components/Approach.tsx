@@ -2,7 +2,6 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import { AnimatePresence, motion } from "framer-motion";
 
 import type { Content, Heading } from "@/data";
 import { cn } from "@/lib/utils";
@@ -85,17 +84,12 @@ const Card = ({
       <Icon className="absolute h-10 w-10 -top-3 -right-3 text-fg opacity-30" />
       <Icon className="absolute h-10 w-10 -bottom-3 -right-3 text-fg opacity-30" />
 
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="h-full w-full absolute inset-0"
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Canvas reveal: mounted on hover/tap, faded in with CSS */}
+      {hovered && (
+        <div className="h-full w-full absolute inset-0 animate-word-in motion-reduce:animate-none">
+          {children}
+        </div>
+      )}
 
       <div className="relative z-20 px-10">
         <div

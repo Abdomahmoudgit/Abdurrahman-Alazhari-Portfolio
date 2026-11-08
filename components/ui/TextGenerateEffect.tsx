@@ -1,9 +1,10 @@
-"use client";
-import { useEffect } from "react";
-import { motion, stagger, useAnimate, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-/** Fades words in one by one; words from `accentFrom` on use the accent color. */
+/**
+ * Fades the words in one after another (pure CSS — no animation library, so it
+ * costs nothing on first load). Words from `accentFrom` on use the accent color.
+ * Reduced-motion users see the text immediately.
+ */
 export const TextGenerateEffect = ({
   words,
   accentFrom = 4,
@@ -13,33 +14,25 @@ export const TextGenerateEffect = ({
   accentFrom?: number;
   className?: string;
 }) => {
-  const [scope, animate] = useAnimate();
-  const reduceMotion = useReducedMotion();
   const wordsArray = words.split(" ");
-
-  useEffect(() => {
-    animate(
-      "span",
-      { opacity: 1 },
-      reduceMotion ? { duration: 0 } : { duration: 2, delay: stagger(0.2) }
-    );
-  }, [animate, reduceMotion, words]);
 
   return (
     <div className={cn("font-bold", className)}>
       <div className="my-4">
         {/* letter-spacing breaks Arabic letter joining, so it's LTR-only */}
         <div className="text-fg leading-snug tracking-wide rtl:tracking-normal rtl:leading-normal">
-          <motion.div ref={scope}>
-            {wordsArray.map((word, idx) => (
-              <motion.span
-                key={word + idx}
-                className={cn(idx >= accentFrom ? "text-purple" : "text-fg", "opacity-0")}
-              >
-                {word}{" "}
-              </motion.span>
-            ))}
-          </motion.div>
+          {wordsArray.map((word, idx) => (
+            <span
+              key={word + idx}
+              className={cn(
+                idx >= accentFrom ? "text-purple" : "text-fg",
+                "animate-word-in motion-reduce:animate-none"
+              )}
+              style={{ animationDelay: `${idx * 0.15}s` }}
+            >
+              {word}{" "}
+            </span>
+          ))}
         </div>
       </div>
     </div>

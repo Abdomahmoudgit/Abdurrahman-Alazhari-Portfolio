@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const World = dynamic(() => import("./Globe").then((m) => m.World), {
@@ -9,20 +8,42 @@ const World = dynamic(() => import("./Globe").then((m) => m.World), {
 
 const GridGlobe = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "200px" });
-  const reduceMotion = useReducedMotion();
+  const [inView, setInView] = useState(false);
+  // Desktop only and no reduced motion: the Three.js globe is heavy and the
+  // tile is small on phones. (Plain browser APIs, so no animation library here.)
+  const [allowed, setAllowed] = useState(false);
 
-  // Skip the Three.js globe on phones: it's heavy and the tile is small there.
-  const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const update = () => setIsDesktop(mq.matches);
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setAllowed(desktop.matches && !reduce.matches);
     update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    desktop.addEventListener("change", update);
+    reduce.addEventListener("change", update);
+    return () => {
+      desktop.removeEventListener("change", update);
+      reduce.removeEventListener("change", update);
+    };
   }, []);
 
-  const showGlobe = inView && isDesktop && !reduceMotion;
+  // Mount the globe once the tile comes within 200px of the viewport.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || inView) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [inView]);
+
+  const showGlobe = inView && allowed;
 
   const globeConfig = {
     pointSize: 4,

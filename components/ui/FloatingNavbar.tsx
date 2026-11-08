@@ -1,11 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 import type { Content } from "@/data";
@@ -25,25 +19,34 @@ export const FloatingNav = ({
   otherLocaleHref: string;
   className?: string;
 }) => {
-  const { scrollYProgress } = useScroll();
-
-  // Visible at the top; hides while scrolling down, shows when scrolling up.
+  // Visible near the top; hides while scrolling down, shows when scrolling up.
+  // Plain scroll listener + CSS transition (no animation library on first load).
   const [visible, setVisible] = useState(true);
+  const lastY = useRef(0);
 
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
-    if (typeof current === "number") {
-      const direction = current - (scrollYProgress.getPrevious() ?? 0);
-      setVisible(scrollYProgress.get() < 0.05 || direction < 0);
-    }
-  });
+  useEffect(() => {
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const nearTop = y < window.innerHeight * 0.3;
+        setVisible(nearTop || y < lastY.current);
+        lastY.current = y;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.nav
-        initial={{ opacity: 1, y: -100 }}
-        animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
+    <nav
         className={cn(
+          "transition-[transform,opacity] duration-200 motion-reduce:transition-none",
+          visible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0 pointer-events-none",
           "flex w-[calc(100%-1.5rem)] max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-4 md:top-10 inset-x-0 mx-auto",
           "px-3 py-3 sm:px-6 md:px-10 md:py-5 rounded-xl border border-line/10 items-center justify-center gap-3 sm:gap-5",
           "shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]",
@@ -79,7 +82,6 @@ export const FloatingNav = ({
         </a>
 
         <ThemeToggle toLight={ui.themeToLight} toDark={ui.themeToDark} />
-      </motion.nav>
-    </AnimatePresence>
+    </nav>
   );
 };
