@@ -112,6 +112,22 @@
   }
 }
 
+/* Printing (the /cv page): plain A4, white background, links readable. */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .cv-sheet a {
+    text-decoration: none;
+  }
+}
+
 @layer utilities {
   .heading {
     @apply font-bold text-4xl md:text-5xl text-center;

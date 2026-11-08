@@ -193,6 +193,23 @@ const ar: Content = {
     approach: { before: "", accent: "طريقة عملي" },
     contact: { before: "جاهز تنقل ", accent: "حضورك الرقمي", after: " للمستوى التالي؟" },
   },
+  cv: {
+    title: "مهندس واجهات أمامية | React.js و Next.js",
+    summary:
+      "مهندس واجهات أمامية بخبرة عملية في بناء تطبيقات ويب في بيئة الإنتاج باستخدام React.js و Next.js. متمكّن من تطوير لوحات تحكم بمكونات قابلة لإعادة الاستخدام، وربط REST/GraphQL APIs، وإدارة حالة الخادم والعميل باستخدام React Query و Redux Toolkit. أطلقت مؤخرًا منصة Full-Stack باستخدام Next.js 15 و Supabase و Cloudflare. أركّز على بنية واجهات قابلة للصيانة، والتصميم المتجاوب، والاختبارات، والأداء.",
+    location: "القاهرة، مصر",
+    labels: {
+      summary: "نبذة",
+      experience: "الخبرات",
+      projects: "المشاريع",
+      skills: "المهارات التقنية",
+      education: "التعليم والتدريب",
+      print: "طباعة / حفظ PDF",
+      downloadPdf: "تحميل PDF",
+      backHome: "العودة للبورتفوليو",
+      viewOnline: "عرض السيرة الذاتية",
+    },
+  },
   contactIntro:
     "تواصل معي لنستكشف معًا كيف أساعدك في بناء حلول ويب عالية الجودة، متجاوبة، وقابلة للتوسع.",
   getInTouch: "تواصل معي",

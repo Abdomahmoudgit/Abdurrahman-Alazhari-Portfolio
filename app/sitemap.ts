@@ -15,5 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   };
 
-  return [...page("/", 1), ...slugs.flatMap((s) => page(`/projects/${s}`, 0.7))];
+  return [
+    ...page("/", 1),
+    ...page("/cv", 0.8),
+    ...slugs.flatMap((s) => page(`/projects/${s}`, 0.7)),
+  ];
 }

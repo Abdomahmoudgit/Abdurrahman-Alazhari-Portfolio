@@ -94,6 +94,23 @@ export type Content = {
     approach: Heading;
     contact: Heading;
   };
+  /** The printable CV page (/cv, /ar/cv). */
+  cv: {
+    title: string; // job title under the name
+    summary: string;
+    location: string;
+    labels: {
+      summary: string;
+      experience: string;
+      projects: string;
+      skills: string;
+      education: string;
+      print: string;
+      downloadPdf: string;
+      backHome: string;
+      viewOnline: string; // Hero link to /cv
+    };
+  };
   contactIntro: string;
   getInTouch: string;
   form: {

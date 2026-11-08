@@ -104,7 +104,7 @@ export default function ChatWidget({
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t.open}
-          className="fixed bottom-5 end-5 z-[5001] flex items-center gap-2 rounded-full bg-purple px-4 py-3 text-sm font-semibold text-white dark:text-black-100 shadow-lg shadow-purple/30 transition hover:scale-105 motion-reduce:transition-none"
+          className="print:hidden fixed bottom-5 end-5 z-[5001] flex items-center gap-2 rounded-full bg-purple px-4 py-3 text-sm font-semibold text-white dark:text-black-100 shadow-lg shadow-purple/30 transition hover:scale-105 motion-reduce:transition-none"
         >
           <HiSparkles className="h-5 w-5" />
           <span className="hidden sm:inline">{t.open}</span>
@@ -117,7 +117,7 @@ export default function ChatWidget({
           role="dialog"
           aria-modal="false"
           aria-label={t.title}
-          className="fixed bottom-0 end-0 sm:bottom-5 sm:end-5 z-[5001] flex h-[min(620px,100dvh)] w-full sm:w-[380px] flex-col overflow-hidden sm:rounded-2xl border border-line/15 bg-page shadow-2xl"
+          className="print:hidden fixed bottom-0 end-0 sm:bottom-5 sm:end-5 z-[5001] flex h-[min(620px,100dvh)] w-full sm:w-[380px] flex-col overflow-hidden sm:rounded-2xl border border-line/15 bg-page shadow-2xl"
         >
           {/* Header */}
           <div className="flex items-center justify-between gap-3 border-b border-line/10 px-4 py-3 card-surface">

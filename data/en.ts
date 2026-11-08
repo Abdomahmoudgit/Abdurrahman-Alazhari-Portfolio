@@ -194,6 +194,23 @@ const en: Content = {
     approach: { before: "My ", accent: "approach" },
     contact: { before: "Ready to take ", accent: "your", after: " digital presence to the next level?" },
   },
+  cv: {
+    title: "Frontend Engineer | React.js & Next.js",
+    summary:
+      "Frontend Engineer with hands-on experience building production web applications using React.js and Next.js. Skilled in developing reusable dashboard interfaces, integrating REST/GraphQL APIs, and managing server and client state with React Query and Redux Toolkit. Recently shipped a full-stack platform with Next.js 15, Supabase and Cloudflare. Focused on maintainable UI architecture, responsive design, testing and frontend performance.",
+    location: "Cairo, Egypt",
+    labels: {
+      summary: "Summary",
+      experience: "Experience",
+      projects: "Projects",
+      skills: "Technical skills",
+      education: "Education & training",
+      print: "Print / Save as PDF",
+      downloadPdf: "Download PDF",
+      backHome: "Back to portfolio",
+      viewOnline: "View CV online",
+    },
+  },
   contactIntro:
     "Let's connect and explore how I can help you build high-quality, responsive, and scalable web solutions.",
   getInTouch: "Let's get in touch",

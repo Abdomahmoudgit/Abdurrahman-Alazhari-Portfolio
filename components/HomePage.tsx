@@ -47,7 +47,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
           ui={content.ui}
           otherLocaleHref={locale === "ar" ? "/" : "/ar"}
         />
-        <Hero ui={content.ui} />
+        <Hero ui={content.ui} cvLabel={content.cv.labels.viewOnline} base={content.base} />
         <Grid items={content.gridItems} ui={content.ui} />
         <RecentProjects
           projects={content.projects}

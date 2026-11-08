@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import Typed from "typed.js";
-import { FaLocationArrow, FaDownload } from "react-icons/fa6";
+import Link from "next/link";
+import { FaArrowRight, FaLocationArrow, FaDownload } from "react-icons/fa6";
 
 import type { Content } from "@/data";
 import { cvPath } from "@/data/shared";
@@ -11,26 +11,44 @@ import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
-const Hero = ({ ui }: { ui: Content["ui"] }) => {
+const Hero = ({
+  ui,
+  cvLabel,
+  base,
+}: {
+  ui: Content["ui"];
+  /** "View CV online" link text */
+  cvLabel: string;
+  /** locale prefix ("" or "/ar") */
+  base: string;
+}) => {
   const typedStrings = ui.heroTyped;
 
   useEffect(() => {
-    // Respect "reduce motion": show a static title instead of the typing loop.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const el = document.getElementById("element");
-      if (el) el.textContent = typedStrings[0];
-      return;
-    }
+    const el = document.getElementById("element");
+    if (el) el.textContent = typedStrings[0]; // visible immediately, before typing starts
 
-    const typed = new Typed("#element", {
-      strings: typedStrings,
-      smartBackspace: true,
-      loop: true,
-      typeSpeed: 50,
-      backSpeed: 30,
-      backDelay: 500,
+    // Respect "reduce motion": keep the static title instead of the typing loop.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Typed.js is loaded on demand so it isn't part of the first-load bundle.
+    let typed: { destroy: () => void } | undefined;
+    let cancelled = false;
+    import("typed.js").then(({ default: Typed }) => {
+      if (cancelled) return;
+      typed = new Typed("#element", {
+        strings: typedStrings,
+        smartBackspace: true,
+        loop: true,
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 500,
+      });
     });
-    return () => typed.destroy();
+    return () => {
+      cancelled = true;
+      typed?.destroy();
+    };
   }, [typedStrings]);
 
   return (
@@ -69,7 +87,7 @@ const Hero = ({ ui }: { ui: Content["ui"] }) => {
 
       <div className="flex justify-center relative mt-4 mb-4 md:mb-20 z-10">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <p className="uppercase rtl:normal-case tracking-widest rtl:tracking-normal text-xs rtl:text-sm text-center text-blue-100 max-w-80">
+          <p className="uppercase rtl:normal-case tracking-widest rtl:tracking-normal text-xs rtl:text-sm text-center text-blue-100 max-w-md">
             {ui.heroTagline}
           </p>
 
@@ -96,6 +114,13 @@ const Hero = ({ ui }: { ui: Content["ui"] }) => {
               className="shadow-lg"
             />
           </div>
+          <Link
+            href={`${base}/cv`}
+            className="mt-5 inline-flex items-center gap-2 text-sm text-fg-muted hover:text-purple transition-colors"
+          >
+            {cvLabel}
+            <FaArrowRight className="h-3 w-3 rtl:-scale-x-100" />
+          </Link>
         </div>
       </div>
     </div>
