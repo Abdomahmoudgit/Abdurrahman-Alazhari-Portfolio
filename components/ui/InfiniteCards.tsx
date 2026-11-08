@@ -8,6 +8,7 @@ export const InfiniteMovingCards = ({
   direction = "left",
   speed = "fast",
   pauseOnHover = true,
+  rtl = false,
   className,
 }: {
   items: {
@@ -19,6 +20,8 @@ export const InfiniteMovingCards = ({
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
+  /** Arabic page: cards read right-to-left, the scrolling track stays LTR */
+  rtl?: boolean;
   className?: string;
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -73,6 +76,7 @@ export const InfiniteMovingCards = ({
   return (
     <div
       ref={containerRef}
+      dir="ltr"
       className={cn(
         // max-w-7xl to w-screen
         "scroller relative z-20 w-screen overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
@@ -90,35 +94,19 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
-            className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
-             flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
-            style={{
-              //   background:
-              //     "linear-gradient(180deg, var(--slate-800), var(--slate-900)", //remove this one
-              //   add these two
-              //   you can generate the color from here https://cssgradient.io/
-              background: "rgb(4,7,29)",
-              backgroundColor:
-                "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-            }}
-            // change to idx cuz we have the same name
+            className="w-[90vw] max-w-full relative rounded-2xl border border-line/10 flex-shrink-0 p-5 md:p-16 md:w-[60vw] card-surface"
+            // The track stays LTR so the scroll animation works; each card follows the page language.
+            dir={rtl ? "rtl" : "ltr"}
             key={idx}
           >
             <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              {/* change text color, text-lg */}
-              <span className=" relative z-20 text-sm md:text-lg leading-[1.6] text-white font-normal">
+              <span className="relative z-20 text-sm md:text-lg leading-[1.6] rtl:leading-[1.9] text-fg font-normal">
                 {item.quote}
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
-                {/* add this div for the profile img */}
                 <div>
                   <img
-                    className="me-3 w-[64px] h-[64px] rounded-full border-4 border-white shadow-lg object-cover transition-transform transform hover:scale-110"
+                    className="me-3 w-[64px] h-[64px] rounded-full border-4 border-line/20 shadow-lg object-cover transition-transform transform hover:scale-110"
                     src={item.img}
                     alt={item.name}
                     width={64}
@@ -129,7 +117,7 @@ export const InfiniteMovingCards = ({
                 </div>
                 <span className="flex flex-col gap-1">
                   {/* change text color, font-normal to font-bold, text-xl */}
-                  <span className="text-xl font-bold leading-[1.6] text-white">
+                  <span className="text-xl font-bold leading-[1.6] text-fg">
                     {item.name}
                   </span>
                   {/* change text color */}

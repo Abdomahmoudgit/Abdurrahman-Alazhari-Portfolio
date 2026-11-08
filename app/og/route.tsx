@@ -1,16 +1,15 @@
 import { ImageResponse } from "next/og";
 
-// Edge runtime: the Node build of @vercel/og in Next 14.1 crashes on Windows paths.
+// Share card at a fixed URL (/og) used by both languages' metadata
+// (lib/metadata.ts). A route handler instead of opengraph-image.tsx because
+// inside the (en) route group Next gives that file a hashed URL.
+// Edge runtime: the Node build of @vercel/og crashed on Windows paths.
 export const runtime = "edge";
 
-export const alt = "Abdurrahman Al-Azhari — Frontend Engineer | React.js & Next.js";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-
+const size = { width: 1200, height: 630 };
 const skills = ["React.js", "Next.js", "TypeScript", "React Query", "Tailwind CSS"];
 
-// Share card shown when the site link is posted on LinkedIn, WhatsApp, X, etc.
-export default function OpengraphImage() {
+export function GET() {
   return new ImageResponse(
     (
       <div

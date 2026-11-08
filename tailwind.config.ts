@@ -26,22 +26,37 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        // --font-arabic is only defined on the Arabic page (app/fonts.ts)
+        // (var() fallback keeps the rule valid on the English page)
+        sans: ["var(--font-arabic, var(--font-inter))", "var(--font-inter)", "system-ui", "sans-serif"],
+      },
       colors: {
+        // Theme-aware colors: values come from CSS variables in
+        // app/globals.css (light in :root, dark in .dark).
+        page: "rgb(var(--c-page) / <alpha-value>)",
+        fg: {
+          DEFAULT: "rgb(var(--c-fg) / <alpha-value>)",
+          muted: "rgb(var(--c-fg-muted) / <alpha-value>)",
+          soft: "rgb(var(--c-fg-soft) / <alpha-value>)",
+        },
+        line: "rgb(var(--c-line) / <alpha-value>)",
+        chip: "rgb(var(--c-chip) / <alpha-value>)",
         black: {
           DEFAULT: "#000",
-          100: "#000319",
+          100: "rgb(var(--c-page) / <alpha-value>)",
           200: "rgba(17, 25, 40, 0.75)",
           300: "rgba(255, 255, 255, 0.125)",
         },
         white: {
           DEFAULT: "#FFF",
-          100: "#BEC1DD",
-          200: "#C1C2D3",
+          100: "rgb(var(--c-fg-muted) / <alpha-value>)",
+          200: "rgb(var(--c-fg-soft) / <alpha-value>)",
         },
         blue: {
-          "100": "#E4ECFF",
+          "100": "rgb(var(--c-tagline) / <alpha-value>)",
         },
-        purple: "#CBACF9",
+        purple: "rgb(var(--c-brand) / <alpha-value>)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -193,7 +208,10 @@ const config = {
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors)
+      // skip theme-variable colors: their "<alpha-value>" placeholder isn't valid CSS here
+      .filter(([, val]) => typeof val === "string" && !val.includes("<alpha-value>"))
+      .map(([key, val]) => [`--${key}`, val])
   );
 
   addBase({
