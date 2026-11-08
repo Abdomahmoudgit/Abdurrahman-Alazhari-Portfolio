@@ -61,8 +61,32 @@ export const gridLayout = {
   },
 } as const;
 
-/** Language-neutral project data, in display order. */
+/**
+ * Language-neutral project data, in display order. The text for each entry is
+ * at the same index in `projectText` in data/en.ts and data/ar.ts.
+ */
 export const projectBase = [
+  {
+    id: 6,
+    slug: "home-agent-platform",
+    img: "/HomeAgent.webp",
+    iconLists: ["/next.svg", "/re.svg", "/tailwind.svg", "/shadcn.png"],
+    tech: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "React Query",
+      "React Hook Form + Zod",
+      "Supabase",
+      "Cloudflare Workers",
+      "Vitest",
+      "Playwright",
+    ],
+    link: "https://homeagenteg.com/",
+    // GitHub repo is private (client project)
+  },
   {
     id: 1,
     slug: "university-housing-system",
@@ -114,9 +138,18 @@ export const testimonialImages = [
   "/yousifshaban.webp",
 ];
 
-export const experienceThumbnails = ["/exp1.svg", "/exp2.svg", "/exp3.webp", "/exp4.svg"];
+// Same order as workExperience in data/en.ts and data/ar.ts.
+export const experienceThumbnails = [
+  "/HomeAgentLogo.webp",
+  "/exp1.svg",
+  "/exp2.svg",
+  "/exp3.webp",
+  "/exp4.svg",
+];
 
+// Same order as the company names in data/en.ts and data/ar.ts.
 export const companyLogos: (string | undefined)[] = [
+  "/HomeAgentLogo.webp",
   undefined, // Qumra Cloud (no logo yet)
   "/Exeem.png",
   undefined, // Elevate Tech Academy (no logo yet)
@@ -138,6 +171,27 @@ export const skillItems = {
     "SCSS",
     "shadcn/ui",
   ],
-  state: ["Redux Toolkit", "React Query", "REST APIs", "GraphQL", "React Hook Form", "Zod"],
-  tools: ["Git", "GitHub", "Vite", "Postman", "Swagger", "Figma", "Agile/Scrum", "Jira"],
+  state: [
+    "Redux Toolkit",
+    "React Query",
+    "REST APIs",
+    "GraphQL",
+    "React Hook Form",
+    "Zod",
+    "Supabase",
+    "PostgreSQL",
+  ],
+  tools: [
+    "Git",
+    "GitHub",
+    "Vite",
+    "Vitest",
+    "Playwright",
+    "Cloudflare Workers",
+    "Postman",
+    "Swagger",
+    "Figma",
+    "Agile/Scrum",
+    "Jira",
+  ],
 };

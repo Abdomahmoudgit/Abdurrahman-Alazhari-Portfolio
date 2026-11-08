@@ -25,7 +25,8 @@ const Experience = ({
             duration={12000 + i * 2500}
             borderRadius="1.75rem"
             as="div"
-            containerClassName="card-surface"
+            // The newest role spans the full row on desktop; the rest sit two per row.
+            containerClassName={i === 0 ? "card-surface lg:col-span-4" : "card-surface"}
             className="flex-1"
           >
             <div className="flex lg:flex-row flex-col lg:items-center p-4 py-6 md:p-5 lg:p-10 gap-3">
