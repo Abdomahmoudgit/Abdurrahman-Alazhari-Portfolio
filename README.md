@@ -22,10 +22,10 @@ My personal portfolio: a fast, bilingual (English / Arabic) site with a light an
 
 - **English + Arabic** — `/` and `/ar`, with a full right-to-left layout, an Arabic font and translated content. `hreflang` links connect the two versions.
 - **Dark and light mode** — dark by default; the choice is saved. All colors come from theme tokens, so every section works in both.
-- **AI assistant** — a chat widget that answers visitors' questions about my experience and projects using Claude (streamed answers, prompt-cached system prompt built from the site data, input limits and rate limiting), with a WhatsApp hand-off for hiring questions.
+- **AI assistant** — a chat widget that answers visitors' questions about my experience and projects using Google Gemini (free tier; streamed answers, system prompt built from the site data, input limits and rate limiting), with a WhatsApp hand-off for hiring questions.
 - **Project pages** — `/projects/[slug]` (and `/ar/projects/[slug]`) with an overview, my role, key features, the tech stack and live / GitHub links. They're statically generated.
 - **Online CV** — `/cv` and `/ar/cv`, generated from the same data as the site and styled to print as a clean A4 PDF.
-- **Blog** — MDX articles in both languages (`/blog`), with drafts that only show in development.
+- **Blog** — MDX articles in both languages ([`/blog`](https://abdurrahmanalazhari.vercel.app/blog)), with drafts that only show in development.
 - **Contact form** — sends messages straight to my inbox through Web3Forms, with spam protection.
 - **Performance** — no animation library: every effect is CSS, heavy 3D loads only when needed, WebP images through `next/image`, self-hosted fonts. First-load JS 125 kB.
 - **SEO** — per-page metadata, a generated Open Graph share image, a sitemap with language alternates, robots.txt, and JSON-LD `Person` data.
@@ -40,7 +40,7 @@ My personal portfolio: a fast, bilingual (English / Arabic) site with a light an
 
 ## Tech stack
 
-**Next.js 14 (App Router)** · **React 18** · **TypeScript** · **Tailwind CSS** · Claude API (`@anthropic-ai/sdk`) · MDX (next-mdx-remote) · Three.js / React Three Fiber · next-themes · Web3Forms · Vitest · Playwright · GitHub Actions · Vercel (hosting, Analytics, Speed Insights)
+**Next.js 14 (App Router)** · **React 18** · **TypeScript** · **Tailwind CSS** · Google Gemini (`@google/genai`) · MDX (next-mdx-remote) · Three.js / React Three Fiber · next-themes · Web3Forms · Vitest · Playwright · GitHub Actions · Vercel (hosting, Analytics, Speed Insights)
 
 ## Getting started
 
@@ -48,7 +48,7 @@ My personal portfolio: a fast, bilingual (English / Arabic) site with a light an
 git clone https://github.com/Abdomahmoudgit/Abdurrahman-Alazhari-Portfolio.git
 cd Abdurrahman-Alazhari-Portfolio
 npm install
-cp .env.example .env.local   # add ANTHROPIC_API_KEY to enable the AI assistant
+cp .env.example .env.local   # add a free GEMINI_API_KEY to enable the AI assistant
 npm run dev        # http://localhost:3000  (Arabic: /ar)
 ```
 
@@ -77,7 +77,7 @@ app/
   (en)/                English root layout, home, /projects, /cv, /blog
   (ar)/ar/             Arabic root layout (RTL), same pages under /ar
   _shell.tsx           shared <html>/<body>, theme provider, analytics
-  api/chat/route.ts    AI assistant endpoint (Claude, streaming)
+  api/chat/route.ts    AI assistant endpoint (Gemini, streaming)
   og/route.tsx         generated share image (/og)
   sitemap.ts, robots.ts
 components/            page sections (Hero, Projects, Experience, Skills, ChatWidget, CvPage, ...)

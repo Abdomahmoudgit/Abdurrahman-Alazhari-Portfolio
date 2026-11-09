@@ -1,22 +1,25 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { ApiError, GoogleGenAI } from "@google/genai";
 
 import { buildAssistantPrompt } from "@/lib/assistantPrompt";
 import { createRateLimiter, parseChatRequest } from "@/lib/chatValidation";
 
 // Portfolio chat assistant: answers visitors' questions about the owner using
-// Claude, streamed back as plain text. Needs ANTHROPIC_API_KEY (Vercel env).
+// Google Gemini (free tier), streamed back as plain text.
+// Needs GEMINI_API_KEY (free from https://aistudio.google.com/apikey).
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MODEL = "claude-opus-5-5";
+// "-latest" alias = newest Flash-Lite model, which has the most generous free
+// daily quota. Override with GEMINI_MODEL if Google changes the free models.
+const MODEL = process.env.GEMINI_MODEL || "gemini-flash-lite-latest";
 const isAllowed = createRateLimiter(10, 10 * 60 * 1000); // 10 requests / 10 min per IP
 
-// System prompts are built once per locale and reused (byte-stable => cacheable).
+// System prompts are built once per locale from the site data.
 const prompts = { en: buildAssistantPrompt("en"), ar: buildAssistantPrompt("ar") };
 
-let client: Anthropic | null = null;
+let client: GoogleGenAI | null = null;
 function getClient() {
-  client ??= new Anthropic(); // reads ANTHROPIC_API_KEY
+  client ??= new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
   return client;
 }
 
@@ -24,7 +27,7 @@ const text = (body: string, status: number) =>
   new Response(body, { status, headers: { "Content-Type": "text/plain; charset=utf-8" } });
 
 export async function POST(req: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) return text("Assistant is not configured", 503);
+  if (!process.env.GEMINI_API_KEY) return text("Assistant is not configured", 503);
 
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (!isAllowed(ip)) return text("Too many messages — please try again in a few minutes.", 429);
@@ -38,52 +41,38 @@ export async function POST(req: Request) {
   const parsed = parseChatRequest(body);
   if ("error" in parsed) return text(parsed.error, 400);
 
+  // Start the request before streaming so quota / auth errors become proper status codes.
+  let response: AsyncGenerator<{ text?: string }>;
+  try {
+    response = await getClient().models.generateContentStream({
+      model: MODEL,
+      contents: parsed.messages.map((m) => ({
+        role: m.role === "assistant" ? "model" : "user",
+        parts: [{ text: m.content }],
+      })),
+      config: {
+        systemInstruction: prompts[parsed.locale],
+        maxOutputTokens: 800,
+        temperature: 0.4,
+        abortSignal: req.signal,
+      },
+    });
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 429) {
+      // Free-tier daily quota reached: the widget then points to WhatsApp.
+      console.error("[chat] Gemini quota reached");
+      return text("Assistant is busy", 503);
+    }
+    console.error("[chat] Gemini error", err instanceof ApiError ? `${err.status}: ${err.message}` : err);
+    return text("Assistant error", 500);
+  }
+
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
-        const response = getClient().beta.messages.stream(
-          {
-            model: MODEL,
-            max_tokens: 1024,
-            // Chat: low effort keeps answers fast and cheap (thinking can't be disabled on Opus 5.5).
-            output_config: { effort: "low" },
-            // Re-run on a fallback model server-side if a safety classifier declines.
-            betas: ["server-side-fallback-2026-07-01"],
-            fallbacks: "default",
-            system: [
-              {
-                type: "text",
-                text: prompts[parsed.locale],
-                cache_control: { type: "ephemeral" },
-              },
-            ],
-            messages: parsed.messages,
-          },
-          { signal: req.signal }
-        );
-
-        for await (const event of response) {
-          if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
-            controller.enqueue(encoder.encode(event.delta.text));
-          }
-        }
-
-        const final = await response.finalMessage();
-        if (final.stop_reason === "refusal") {
-          controller.enqueue(
-            encoder.encode(
-              parsed.locale === "ar"
-                ? "عذرًا، لا أستطيع المساعدة في ذلك. يمكنك التواصل مع عبدالرحمن مباشرة عبر واتساب."
-                : "Sorry, I can't help with that. You can reach Abdurrahman directly on WhatsApp."
-            )
-          );
-        }
-        if (process.env.NODE_ENV !== "production") {
-          const u = final.usage;
-          console.log(
-            `[chat] in=${u.input_tokens} cache_read=${u.cache_read_input_tokens ?? 0} cache_write=${u.cache_creation_input_tokens ?? 0} out=${u.output_tokens}`
-          );
+        for await (const chunk of response) {
+          if (chunk.text) controller.enqueue(encoder.encode(chunk.text));
         }
         controller.close();
       } catch (err) {
@@ -91,13 +80,7 @@ export async function POST(req: Request) {
           controller.close();
           return;
         }
-        if (err instanceof Anthropic.RateLimitError) {
-          console.error("[chat] Anthropic rate limit");
-        } else if (err instanceof Anthropic.APIError) {
-          console.error(`[chat] Anthropic API error ${err.status}: ${err.message}`);
-        } else {
-          console.error("[chat] unexpected error", err);
-        }
+        console.error("[chat] stream error", err);
         controller.error(err);
       }
     },
